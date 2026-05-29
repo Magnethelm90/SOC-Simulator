@@ -1,0 +1,89 @@
+import React, { useState, useEffect } from 'react';
+
+export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer }) {
+  const isMultiStage = scenario.isMultiStage;
+  const currentStep = isMultiStage ? scenario.steps[currentStepIndex] : scenario;
+
+  const title = isMultiStage ? `${scenario.title} - ${currentStep.stepTitle}` : scenario.title;
+  const description = currentStep.description;
+  const logs = currentStep.logs || scenario.logs;
+  const options = currentStep.options;
+  const isMultiSelect = currentStep.isMultiSelect;
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  // Reset selection when step changes
+  useEffect(() => {
+    setSelectedOptions([]);
+  }, [scenario, currentStepIndex]);
+
+  const toggleOption = (option) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(selectedOptions.filter(o => o !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
+
+  const handleSubmit = () => {
+    onAnswer(selectedOptions);
+  };
+
+  return (
+    <div className="screen">
+      <div className="glass-panel">
+        <h2 className="alert-title">{title}</h2>
+        <p style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '15px' }}>{description}</p>
+        
+        {logs && (
+          <div className="log-console">
+            <div className="log-console-header">
+              <span className="log-dot red"></span>
+              <span className="log-dot yellow"></span>
+              <span className="log-dot green"></span>
+              <span className="log-console-title">TERMINAL LOG FEED</span>
+            </div>
+            <pre className="log-console-body">
+              <code>{logs}</code>
+            </pre>
+          </div>
+        )}
+      </div>
+      
+      <div className="options-container">
+        {isMultiSelect ? (
+          <>
+            {options.map((option, index) => (
+              <label key={index} className="checkbox-option">
+                <input 
+                  type="checkbox" 
+                  checked={selectedOptions.includes(option)}
+                  onChange={() => toggleOption(option)}
+                />
+                <span className="checkbox-text">{option.text}</span>
+              </label>
+            ))}
+            <button 
+              className="btn btn-primary" 
+              style={{ marginTop: '20px' }}
+              onClick={handleSubmit}
+              disabled={selectedOptions.length === 0}
+            >
+              Antworten bestätigen
+            </button>
+          </>
+        ) : (
+          options.map((option, index) => (
+            <button 
+              key={index} 
+              className="btn" 
+              onClick={() => onAnswer([option])}
+            >
+              {option.text}
+            </button>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
