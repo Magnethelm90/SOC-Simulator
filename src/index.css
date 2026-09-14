@@ -448,3 +448,167 @@ p {
   margin-top: 0.2rem;
 }
 
+/* Settings panel on the start screen */
+.settings-toggle {
+  margin-bottom: 1rem;
+}
+
+.settings-panel {
+  text-align: left;
+}
+
+.settings-group {
+  margin-bottom: 1.25rem;
+}
+
+.settings-group:last-child {
+  margin-bottom: 0;
+}
+
+.settings-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.difficulty-options {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.difficulty-option {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.difficulty-option.active {
+  border-color: var(--accent-color);
+  color: var(--text-main);
+  background: rgba(0, 255, 136, 0.08);
+}
+
+.difficulty-option input {
+  accent-color: var(--accent-color);
+}
+
+.settings-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.settings-checkbox-row input {
+  width: 1.1em;
+  height: 1.1em;
+  accent-color: var(--accent-color);
+}
+
+.category-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.category-chip {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  background: rgba(0, 255, 136, 0.08);
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.category-chip.excluded {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Countdown timer above the task panel */
+.timer-track {
+  margin-bottom: 1rem;
+}
+
+.timer-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.timer-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.timer-bar-fill {
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 1s linear, background-color 0.3s ease;
+}
+
+.timer-track.warning .timer-bar-fill {
+  background: #ffb020;
+}
+
+.timer-track.warning .timer-header {
+  color: #ffb020;
+}
+
+.timer-track.urgent .timer-bar-fill {
+  background: var(--error-color);
+}
+
+.timer-track.urgent .timer-header {
+  color: var(--error-color);
+  animation: pulse-text 1s infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Keyboard-shortcut hint badge on each option button */
+.option-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  margin-right: 0.6em;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  vertical-align: middle;
+}
+

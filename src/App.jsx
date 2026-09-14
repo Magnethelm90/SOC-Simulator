@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import StartScreen from './components/StartScreen';
 import TaskScreen from './components/TaskScreen';
 import ResultScreen from './components/ResultScreen';
 import { scenarios } from './data/scenarios';
+import { playSound, setSoundEnabled } from './utils/sound';
+import { loadSettings, saveSettings, getTimerSeconds, getCategoryBreakdown } from './utils/settings';
 import './index.css';
 
 const shuffleArray = (array) => {
@@ -27,6 +29,9 @@ const getLevelInfo = (xp) => {
 const STREAK_INTERVAL = 3;
 const STREAK_BONUS = 15;
 
+// Hardcore mode runs against the clock on every task, so it pays out more.
+const HARDCORE_XP_MULTIPLIER = 1.2;
+
 function App() {
   const [gameState, setGameState] = useState('start'); // start, task, result, end
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
@@ -36,6 +41,7 @@ function App() {
     const savedScore = localStorage.getItem('soc_simulator_score');
     return savedScore ? parseInt(savedScore, 10) : 0;
   });
+  const [settings, setSettings] = useState(loadSettings);
 
   // Per-shift stats. Reset every time a new shift starts (unlike score/XP,
   // which is meant to persist and keep accumulating across shifts).
@@ -51,12 +57,45 @@ function App() {
     correctAnswerTexts: [],
   });
 
+  const categories = useMemo(() => getCategoryBreakdown(scenarios), []);
+
   useEffect(() => {
     localStorage.setItem('soc_simulator_score', score);
   }, [score]);
 
+  useEffect(() => {
+    setSoundEnabled(settings.soundEnabled);
+  }, [settings.soundEnabled]);
+
+  const updateSettings = (patch) => {
+    setSettings((prev) => {
+      const next = { ...prev, ...patch };
+      saveSettings(next);
+      return next;
+    });
+  };
+
+  const toggleCategory = (name) => {
+    setSettings((prev) => {
+      const isExcluded = prev.excludedCategories.includes(name);
+      const excludedCategories = isExcluded
+        ? prev.excludedCategories.filter((c) => c !== name)
+        : [...prev.excludedCategories, name];
+      const next = { ...prev, excludedCategories };
+      saveSettings(next);
+      return next;
+    });
+  };
+
   const startGame = () => {
-    const newOrder = shuffleArray(scenarios.map((_, i) => i));
+    const pool = scenarios
+      .map((_, i) => i)
+      .filter((i) => !settings.excludedCategories.includes(scenarios[i].category || 'Allgemein'));
+    // If the player excluded every category, fall back to the full set
+    // rather than starting a shift with zero incidents.
+    const usablePool = pool.length > 0 ? pool : scenarios.map((_, i) => i);
+
+    const newOrder = shuffleArray(usablePool);
     setTaskOrder(newOrder);
     setGameState('task');
     setCurrentTaskIndex(0);
@@ -64,6 +103,7 @@ function App() {
     setStreak(0);
     setMaxStreak(0);
     setStats({ correct: 0, wrong: 0 });
+    playSound('alarm');
     // Score wird nicht zurückgesetzt, damit man weiter aufsteigen kann!
   };
 
@@ -116,8 +156,16 @@ function App() {
     // Let's just deduct what is defined in penalty.
     xpChange -= totalPenalty;
 
+    // Hardcore mode plays against a stricter clock, so successful answers
+    // are worth more.
+    if (settings.difficulty === 'hardcore' && xpChange > 0) {
+      xpChange = Math.round(xpChange * HARDCORE_XP_MULTIPLIER);
+    }
+
     // Ensure score doesn't drop below 0 if we don't want to, but negative is fine for a simulator.
     setScore(prev => Math.max(0, prev + xpChange));
+
+    playSound(hasGameOver ? 'gameover' : (isCorrect ? 'correct' : 'wrong'));
 
     setLastAnswerState({
       isCorrect,
@@ -142,6 +190,7 @@ function App() {
     if (lastAnswerState.isCorrect && currentScenario.isMultiStage && currentStepIndex + 1 < currentScenario.steps.length) {
       setCurrentStepIndex(currentStepIndex + 1);
       setGameState('task');
+      playSound('alarm');
       return;
     }
 
@@ -150,6 +199,7 @@ function App() {
       setCurrentTaskIndex(currentTaskIndex + 1);
       setCurrentStepIndex(0);
       setGameState('task');
+      playSound('alarm');
     } else {
       setGameState('end');
     }
@@ -158,6 +208,7 @@ function App() {
   const levelInfo = getLevelInfo(score);
   const totalAnswered = stats.correct + stats.wrong;
   const accuracy = totalAnswered > 0 ? Math.round((stats.correct / totalAnswered) * 100) : 0;
+  const timerSeconds = getTimerSeconds(settings);
 
   return (
     <div className="app-container">
@@ -178,7 +229,17 @@ function App() {
         )}
       </div>
 
-      {gameState === 'start' && <StartScreen onStart={startGame} score={score} onReset={resetScore} />}
+      {gameState === 'start' && (
+        <StartScreen
+          onStart={startGame}
+          score={score}
+          onReset={resetScore}
+          settings={settings}
+          onSettingsChange={updateSettings}
+          categories={categories}
+          onToggleCategory={toggleCategory}
+        />
+      )}
 
       {gameState === 'task' && taskOrder.length > 0 && (
         <TaskScreen
@@ -188,6 +249,7 @@ function App() {
           onAnswer={handleAnswer}
           taskNumber={currentTaskIndex + 1}
           totalTasks={taskOrder.length}
+          timerSeconds={timerSeconds}
         />
       )}
 
