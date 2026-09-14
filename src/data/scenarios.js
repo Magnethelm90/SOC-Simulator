@@ -5134,7 +5134,20 @@ const baseScenarios = [
         options: [
           { text: "Den Domain Controller sofort vom Netzwerk trennen, um die weitere Verschlüsselung und Ausbreitung im Netz zu stoppen.", isCorrect: true },
           { text: "Erst eine vollständige forensische Analyse durchführen, bevor irgendetwas am System verändert wird.", isCorrect: false },
-          { text: "Den Domain Controller neu starten, um zu sehen, ob das Problem dann verschwindet.", isCorrect: false }
+          {
+            text: "Den Domain Controller neu starten, um zu sehen, ob das Problem dann verschwindet.",
+            isCorrect: false,
+            consequenceStep: {
+              stepTitle: "Konsequenz: Ausbreitung während des Neustarts",
+              description: "Während des Neustarts blieb der Domain Controller kurz im Netzwerk aktiv. Jetzt melden zwei weitere Server dieselben Verschlüsselungs-Symptome. Wie reagierst du jetzt?",
+              options: [
+                { text: "Sofort auch die beiden neu betroffenen Server isolieren und danach alle drei Systeme gemeinsam forensisch untersuchen.", isCorrect: true },
+                { text: "Nur den ursprünglichen Domain Controller isolieren, die beiden neuen Server erstmal weiterlaufen lassen.", isCorrect: false },
+                { text: "Alle drei Server sofort neu starten, in der Hoffnung, dass es diesmal klappt.", isCorrect: false }
+              ],
+              feedback: "Genau das war die Folge des verfrühten Neustarts: Ransomware konnte sich in der kurzen Zeit weiterverbreiten. Jetzt hilft nur noch, konsequent alle betroffenen Systeme zu isolieren, bevor noch mehr Server dazukommen."
+            }
+          }
         ],
         feedback: "Korrekt! Eindämmung (Containment) geht bei aktiver Verschlüsselung vor vollständiger Analyse – jede verstrichene Minute vergrößert den Schaden. Ein Neustart würde zudem wertvolle forensische Spuren im Arbeitsspeicher zerstören."
       }
@@ -5151,7 +5164,20 @@ const baseScenarios = [
         description: "Ein Ransomware-Vorfall wurde erfolgreich eingedämmt und die Systeme aus Backups wiederhergestellt. Was ist der nächste sinnvolle Schritt, bevor der Vorfall als 'erledigt' geschlossen wird?",
         options: [
           { text: "Eine strukturierte Root-Cause-Analyse durchführen, um den ursprünglichen Einstiegspunkt (z.B. Phishing-Mail, offener RDP-Port) zu identifizieren.", isCorrect: true },
-          { text: "Den Vorfall sofort schließen, da die Systeme ja wieder laufen.", isCorrect: false },
+          {
+            text: "Den Vorfall sofort schließen, da die Systeme ja wieder laufen.",
+            isCorrect: false,
+            consequenceStep: {
+              stepTitle: "Konsequenz: Derselbe Angriff, zweite Runde",
+              description: "Zwei Wochen später: Über exakt denselben, nie geschlossenen Einstiegspunkt dringt erneut jemand ein – diesmal mit Datenabfluss statt Verschlüsselung. Was tust du jetzt als Erstes?",
+              options: [
+                { text: "Den Einstiegspunkt sofort schließen (patchen/absichern) und danach die Root-Cause-Analyse nachholen, die beim ersten Mal übersprungen wurde.", isCorrect: true },
+                { text: "Wieder nur die Systeme wiederherstellen und den Vorfall erneut ohne Ursachenanalyse schließen.", isCorrect: false },
+                { text: "Abwarten, ob es noch ein drittes Mal passiert, bevor man reagiert.", isCorrect: false }
+              ],
+              feedback: "Das ist die direkte Folge des übersprungenen ersten Lessons-Learned-Prozesses: Ohne geschlossene Ursache bleibt die Tür offen. Jetzt müssen Einstiegspunkt und Root-Cause-Analyse nachträglich nachgeholt werden."
+            }
+          },
           { text: "Nur die Führungsebene informieren und keine weiteren Schritte einleiten.", isCorrect: false }
         ],
         feedback: "Richtig! Ohne Root-Cause-Analyse bleibt der ursprüngliche Einstiegspunkt offen, und derselbe Angriff kann sich jederzeit wiederholen."

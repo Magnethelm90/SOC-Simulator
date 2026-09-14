@@ -85,7 +85,14 @@ function App() {
     isGameOver: false,
     streakBonus: 0,
     correctAnswerTexts: [],
+    pendingConsequenceStep: null,
   });
+
+  // A wrong answer on a multi-stage step can carry a `consequenceStep`: a
+  // one-off extra step that plays out the fallout of that mistake before the
+  // scenario ends, instead of just cutting straight to the next incident.
+  // Non-null while that extra step is being shown/answered.
+  const [consequenceStep, setConsequenceStep] = useState(null);
 
   const categories = useMemo(() => getCategoryBreakdown(scenarios), []);
 
@@ -147,6 +154,7 @@ function App() {
     setStreak(0);
     setMaxStreak(0);
     setStats({ correct: 0, wrong: 0 });
+    setConsequenceStep(null);
     playSound('alarm');
     // Score wird nicht zurückgesetzt, damit man weiter aufsteigen kann!
   };
@@ -158,7 +166,7 @@ function App() {
 
   const handleAnswer = (selectedOptions) => {
     const currentScenario = scenarios[taskOrder[currentTaskIndex]];
-    const currentStep = currentScenario.isMultiStage ? currentScenario.steps[currentStepIndex] : currentScenario;
+    const currentStep = consequenceStep || (currentScenario.isMultiStage ? currentScenario.steps[currentStepIndex] : currentScenario);
     const allCorrectOptions = currentStep.options.filter(opt => opt.isCorrect);
 
     let isCorrect = false;
@@ -177,6 +185,13 @@ function App() {
 
     const hasGameOver = selectedOptions.some(opt => opt.isGameOver);
     let totalPenalty = selectedOptions.reduce((sum, opt) => sum + (opt.penalty || 0), 0);
+
+    // A wrong answer can carry its own one-off consequence step (see the
+    // `consequenceStep` state comment above). Never chain a consequence
+    // step off of another one - one extra step per mistake, max.
+    const pendingConsequenceStep = (!isCorrect && !hasGameOver && !consequenceStep)
+      ? selectedOptions.map(opt => opt.consequenceStep).find(Boolean) || null
+      : null;
 
     // Default XP gain for a correct step
     let xpChange = isCorrect ? 100 : 0;
@@ -232,6 +247,7 @@ function App() {
       isGameOver: hasGameOver,
       streakBonus,
       correctAnswerTexts: allCorrectOptions.map(opt => opt.text),
+      pendingConsequenceStep,
     });
 
     setGameState('result');
@@ -250,24 +266,7 @@ function App() {
     }));
   };
 
-  const nextTask = () => {
-    if (lastAnswerState.isGameOver) {
-      finishShift(true);
-      setGameState('end');
-      return;
-    }
-
-    const currentScenario = scenarios[taskOrder[currentTaskIndex]];
-
-    // Check if we should go to next step
-    if (lastAnswerState.isCorrect && currentScenario.isMultiStage && currentStepIndex + 1 < currentScenario.steps.length) {
-      setCurrentStepIndex(currentStepIndex + 1);
-      setGameState('task');
-      playSound('alarm');
-      return;
-    }
-
-    // Otherwise go to next task
+  const goToNextTaskOrEnd = () => {
     if (currentTaskIndex + 1 < taskOrder.length) {
       const nextIndex = currentTaskIndex + 1;
       setCurrentTaskIndex(nextIndex);
@@ -282,6 +281,43 @@ function App() {
       finishShift(false);
       setGameState('end');
     }
+  };
+
+  const nextTask = () => {
+    if (lastAnswerState.isGameOver) {
+      finishShift(true);
+      setGameState('end');
+      return;
+    }
+
+    // A wrong answer just unlocked a one-off consequence step - play that
+    // out next instead of ending the scenario immediately.
+    if (lastAnswerState.pendingConsequenceStep) {
+      setConsequenceStep(lastAnswerState.pendingConsequenceStep);
+      setGameState('task');
+      playSound('alarm');
+      return;
+    }
+
+    // We just finished answering a consequence step - always move on
+    // afterwards (correct or not), never back into scenario.steps.
+    if (consequenceStep) {
+      setConsequenceStep(null);
+      goToNextTaskOrEnd();
+      return;
+    }
+
+    const currentScenario = scenarios[taskOrder[currentTaskIndex]];
+
+    // Check if we should go to next step
+    if (lastAnswerState.isCorrect && currentScenario.isMultiStage && currentStepIndex + 1 < currentScenario.steps.length) {
+      setCurrentStepIndex(currentStepIndex + 1);
+      setGameState('task');
+      playSound('alarm');
+      return;
+    }
+
+    goToNextTaskOrEnd();
   };
 
   // Called once the player has fully ordered a triage round. Reorders the
@@ -366,9 +402,11 @@ function App() {
 
       {gameState === 'task' && taskOrder.length > 0 && (
         <TaskScreen
-          key={`${currentTaskIndex}-${currentStepIndex}`}
-          scenario={scenarios[taskOrder[currentTaskIndex]]}
-          currentStepIndex={currentStepIndex}
+          key={consequenceStep ? `consequence-${currentTaskIndex}` : `${currentTaskIndex}-${currentStepIndex}`}
+          scenario={consequenceStep
+            ? { ...scenarios[taskOrder[currentTaskIndex]], isMultiStage: true, steps: [consequenceStep] }
+            : scenarios[taskOrder[currentTaskIndex]]}
+          currentStepIndex={consequenceStep ? 0 : currentStepIndex}
           onAnswer={handleAnswer}
           taskNumber={currentTaskIndex + 1}
           totalTasks={taskOrder.length}
@@ -378,8 +416,8 @@ function App() {
 
       {gameState === 'result' && taskOrder.length > 0 && (() => {
         const currentScenario = scenarios[taskOrder[currentTaskIndex]];
-        const currentStep = currentScenario.isMultiStage ? currentScenario.steps[currentStepIndex] : currentScenario;
-        const isNextStep = lastAnswerState.isCorrect && currentScenario.isMultiStage && currentStepIndex + 1 < currentScenario.steps.length;
+        const currentStep = consequenceStep || (currentScenario.isMultiStage ? currentScenario.steps[currentStepIndex] : currentScenario);
+        const isNextStep = !consequenceStep && lastAnswerState.isCorrect && currentScenario.isMultiStage && currentStepIndex + 1 < currentScenario.steps.length;
 
         return (
           <ResultScreen
