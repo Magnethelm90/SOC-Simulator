@@ -711,6 +711,84 @@ p {
   line-height: 1.4;
 }
 
+/* Triage mini-game: pick the order to work through simultaneous alarms */
+.triage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.triage-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.triage-card:hover {
+  border-color: var(--accent-color);
+  background: rgba(0, 255, 136, 0.06);
+}
+
+.triage-card-title {
+  flex: 1;
+}
+
+.severity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.severity-dot.low, .severity-label.low { color: #88c0d0; }
+.severity-dot.low { background: #88c0d0; }
+.severity-dot.medium, .severity-label.medium { color: #ffb020; }
+.severity-dot.medium { background: #ffb020; }
+.severity-dot.high, .severity-label.high { color: var(--error-color); }
+.severity-dot.high { background: var(--error-color); }
+
+.severity-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.triage-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.triage-order-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.triage-order-item .severity-label {
+  margin-left: auto;
+}
+
+.triage-verdict {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 /* Keyboard-shortcut hint badge on each option button */
 .option-key {
   display: inline-flex;

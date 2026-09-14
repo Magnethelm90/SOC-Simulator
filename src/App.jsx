@@ -4,6 +4,7 @@ import TaskScreen from './components/TaskScreen';
 import ResultScreen from './components/ResultScreen';
 import AchievementsScreen from './components/AchievementsScreen';
 import AchievementToast from './components/AchievementToast';
+import TriageScreen from './components/TriageScreen';
 import { scenarios } from './data/scenarios';
 import { ACHIEVEMENTS } from './data/achievements';
 import { playSound, setSoundEnabled } from './utils/sound';
@@ -41,8 +42,26 @@ const HARDCORE_XP_MULTIPLIER = 1.2;
 // would trivially qualify.
 const MIN_TASKS_FOR_PERFECT_SHIFT = 10;
 
+// Every TRIAGE_INTERVAL-th task kicks off a triage round: instead of a
+// single incident, the next 3 scenarios in the shuffled order are shown at
+// once and the player chooses in which order to work through them, like a
+// real SOC alert queue. Multi-stage scenarios are excluded from a round to
+// keep the "pick an order, then just play them normally" trick simple.
+const TRIAGE_INTERVAL = 5;
+const TRIAGE_GROUP_SIZE = 3;
+
+const isTriagePoint = (index, order) => (
+  index > 0
+  // index is 0-based, so "every 5th task" (task #5, #10, ...) means
+  // (index + 1) is a multiple of TRIAGE_INTERVAL, not index itself.
+  && (index + 1) % TRIAGE_INTERVAL === 0
+  && index + TRIAGE_GROUP_SIZE - 1 < order.length
+  && !Array.from({ length: TRIAGE_GROUP_SIZE }, (_, i) => scenarios[order[index + i]])
+    .some((s) => s.isMultiStage)
+);
+
 function App() {
-  const [gameState, setGameState] = useState('start'); // start, task, result, end, achievements
+  const [gameState, setGameState] = useState('start'); // start, task, result, end, achievements, triage
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [taskOrder, setTaskOrder] = useState([]);
@@ -250,14 +269,38 @@ function App() {
 
     // Otherwise go to next task
     if (currentTaskIndex + 1 < taskOrder.length) {
-      setCurrentTaskIndex(currentTaskIndex + 1);
+      const nextIndex = currentTaskIndex + 1;
+      setCurrentTaskIndex(nextIndex);
       setCurrentStepIndex(0);
-      setGameState('task');
-      playSound('alarm');
+      if (isTriagePoint(nextIndex, taskOrder)) {
+        setGameState('triage');
+      } else {
+        setGameState('task');
+        playSound('alarm');
+      }
     } else {
       finishShift(false);
       setGameState('end');
     }
+  };
+
+  // Called once the player has fully ordered a triage round. Reorders the
+  // relevant slice of taskOrder to match their chosen sequence, applies the
+  // triage bonus/penalty, then hands off to the completely normal task flow
+  // (nothing else needs to know a triage round ever happened).
+  const resolveTriage = (orderedPositions, bonus) => {
+    setTaskOrder((prev) => {
+      const next = [...prev];
+      orderedPositions.forEach((originalPos, i) => {
+        next[currentTaskIndex + i] = prev[originalPos];
+      });
+      return next;
+    });
+    if (bonus !== 0) {
+      setScore((prev) => Math.max(0, prev + bonus));
+    }
+    setGameState('task');
+    playSound('alarm');
   };
 
   const levelInfo = getLevelInfo(score);
@@ -309,6 +352,16 @@ function App() {
 
       {gameState === 'achievements' && (
         <AchievementsScreen unlocked={lifetimeStats.unlocked} onBack={() => setGameState('start')} />
+      )}
+
+      {gameState === 'triage' && taskOrder.length > 0 && (
+        <TriageScreen
+          candidates={Array.from({ length: TRIAGE_GROUP_SIZE }, (_, i) => ({
+            position: currentTaskIndex + i,
+            scenario: scenarios[taskOrder[currentTaskIndex + i]],
+          }))}
+          onConfirm={resolveTriage}
+        />
       )}
 
       {gameState === 'task' && taskOrder.length > 0 && (
