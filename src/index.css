@@ -314,3 +314,137 @@ p {
   background-color: rgba(255, 0, 0, 0.4);
 }
 
+.btn-link {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.btn-link:hover {
+  color: var(--error-color);
+}
+
+/* Streak badge in the header */
+.streak-badge {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #ffb020;
+}
+
+.streak-bonus {
+  margin-top: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: #ffb020;
+}
+
+/* Progress indicator above the task panel */
+.progress-track {
+  margin-bottom: 1rem;
+}
+
+.progress-track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.category-badge {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent-color);
+  box-shadow: 0 0 8px var(--primary-glow);
+  transition: width 0.3s ease;
+}
+
+/* "What the correct answer would have been" box on wrong answers */
+.correct-answer-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.correct-answer-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.correct-answer-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-main);
+}
+
+.correct-answer-box li {
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+/* End-of-shift stats row */
+.shift-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.shift-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shift-stat-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.shift-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
+}
+

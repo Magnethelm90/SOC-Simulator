@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer }) {
+export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer, taskNumber, totalTasks }) {
   const isMultiStage = scenario.isMultiStage;
   const currentStep = isMultiStage ? scenario.steps[currentStepIndex] : scenario;
 
@@ -9,6 +9,8 @@ export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer })
   const logs = currentStep.logs || scenario.logs;
   const options = currentStep.options;
   const isMultiSelect = currentStep.isMultiSelect;
+  const category = scenario.category;
+  const showProgress = Number.isInteger(taskNumber) && Number.isInteger(totalTasks) && totalTasks > 0;
 
   // No effect needed to reset selectedOptions on step/scenario change: the
   // parent remounts this component with a fresh key whenever scenario or
@@ -29,10 +31,21 @@ export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer })
 
   return (
     <div className="screen">
+      {showProgress && (
+        <div className="progress-track" aria-label={`Vorfall ${taskNumber} von ${totalTasks}`}>
+          <div className="progress-track-header">
+            <span>Vorfall {taskNumber} / {totalTasks}</span>
+            {category && <span className="category-badge">{category}</span>}
+          </div>
+          <div className="progress-bar">
+            <div className="progress-bar-fill" style={{ width: `${(taskNumber / totalTasks) * 100}%` }} />
+          </div>
+        </div>
+      )}
       <div className="glass-panel">
         <h2 className="alert-title">{title}</h2>
         <p style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '15px' }}>{description}</p>
-        
+
         {logs && (
           <div className="log-console">
             <div className="log-console-header">
