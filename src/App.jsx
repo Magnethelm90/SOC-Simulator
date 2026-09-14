@@ -138,10 +138,11 @@ function App() {
       {gameState === 'start' && <StartScreen onStart={startGame} />}
       
       {gameState === 'task' && taskOrder.length > 0 && (
-        <TaskScreen 
+        <TaskScreen
+          key={`${currentTaskIndex}-${currentStepIndex}`}
           scenario={scenarios[taskOrder[currentTaskIndex]]}
           currentStepIndex={currentStepIndex}
-          onAnswer={handleAnswer} 
+          onAnswer={handleAnswer}
         />
       )}
 

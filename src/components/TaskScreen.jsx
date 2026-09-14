@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer }) {
   const isMultiStage = scenario.isMultiStage;
@@ -10,12 +10,10 @@ export default function TaskScreen({ scenario, currentStepIndex = 0, onAnswer })
   const options = currentStep.options;
   const isMultiSelect = currentStep.isMultiSelect;
 
+  // No effect needed to reset selectedOptions on step/scenario change: the
+  // parent remounts this component with a fresh key whenever scenario or
+  // currentStepIndex changes, so useState's initial value naturally resets.
   const [selectedOptions, setSelectedOptions] = useState([]);
-
-  // Reset selection when step changes
-  useEffect(() => {
-    setSelectedOptions([]);
-  }, [scenario, currentStepIndex]);
 
   const toggleOption = (option) => {
     if (selectedOptions.includes(option)) {
