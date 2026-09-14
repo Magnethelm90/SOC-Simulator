@@ -596,6 +596,121 @@ p {
   50% { opacity: 0.5; }
 }
 
+/* "Warum?" explanation box on the result screen */
+.explanation-block {
+  margin-top: 0.75rem;
+}
+
+.explain-toggle {
+  padding: 0.4rem 0;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.explanation-box {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Achievement toast notifications */
+.achievement-toast-stack {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: calc(100% - 2rem);
+  max-width: 440px;
+}
+
+.achievement-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 0 20px var(--primary-glow);
+  cursor: pointer;
+  animation: toast-in 0.3s ease-out;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.achievement-toast-icon {
+  font-size: 1.6rem;
+}
+
+.achievement-toast-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+}
+
+.achievement-toast-title {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Achievements screen */
+.achievement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.achievement-item.unlocked {
+  border-color: rgba(0, 255, 136, 0.3);
+  background: rgba(0, 255, 136, 0.06);
+}
+
+.achievement-item.locked {
+  opacity: 0.55;
+}
+
+.achievement-item-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.achievement-item-title {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.achievement-item-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
 /* Keyboard-shortcut hint badge on each option button */
 .option-key {
   display: inline-flex;

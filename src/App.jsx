@@ -2,9 +2,13 @@ import { useState, useEffect, useMemo } from 'react';
 import StartScreen from './components/StartScreen';
 import TaskScreen from './components/TaskScreen';
 import ResultScreen from './components/ResultScreen';
+import AchievementsScreen from './components/AchievementsScreen';
+import AchievementToast from './components/AchievementToast';
 import { scenarios } from './data/scenarios';
+import { ACHIEVEMENTS } from './data/achievements';
 import { playSound, setSoundEnabled } from './utils/sound';
 import { loadSettings, saveSettings, getTimerSeconds, getCategoryBreakdown } from './utils/settings';
+import { loadLifetimeStats, saveLifetimeStats, checkNewAchievements } from './utils/lifetimeStats';
 import './index.css';
 
 const shuffleArray = (array) => {
@@ -32,8 +36,13 @@ const STREAK_BONUS = 15;
 // Hardcore mode runs against the clock on every task, so it pays out more.
 const HARDCORE_XP_MULTIPLIER = 1.2;
 
+// A shift only counts as a "perfect shift" (for achievements) once it covers
+// a meaningful number of incidents - otherwise a 2-question lucky streak
+// would trivially qualify.
+const MIN_TASKS_FOR_PERFECT_SHIFT = 10;
+
 function App() {
-  const [gameState, setGameState] = useState('start'); // start, task, result, end
+  const [gameState, setGameState] = useState('start'); // start, task, result, end, achievements
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [taskOrder, setTaskOrder] = useState([]);
@@ -42,6 +51,8 @@ function App() {
     return savedScore ? parseInt(savedScore, 10) : 0;
   });
   const [settings, setSettings] = useState(loadSettings);
+  const [lifetimeStats, setLifetimeStats] = useState(loadLifetimeStats);
+  const [toastQueue, setToastQueue] = useState([]);
 
   // Per-shift stats. Reset every time a new shift starts (unlike score/XP,
   // which is meant to persist and keep accumulating across shifts).
@@ -66,6 +77,20 @@ function App() {
   useEffect(() => {
     setSoundEnabled(settings.soundEnabled);
   }, [settings.soundEnabled]);
+
+  const applyLifetimeUpdate = (updater) => {
+    const updated = updater(lifetimeStats);
+    const { stats: withUnlocks, newlyUnlocked } = checkNewAchievements(updated);
+    saveLifetimeStats(withUnlocks);
+    setLifetimeStats(withUnlocks);
+    if (newlyUnlocked.length > 0) {
+      setToastQueue((q) => [...q, ...newlyUnlocked]);
+    }
+  };
+
+  const dismissToast = (id) => {
+    setToastQueue((q) => q.filter((a) => a.id !== id));
+  };
 
   const updateSettings = (patch) => {
     setSettings((prev) => {
@@ -138,8 +163,9 @@ function App() {
     let xpChange = isCorrect ? 100 : 0;
 
     let streakBonus = 0;
+    let newStreak = 0;
     if (isCorrect && !hasGameOver) {
-      const newStreak = streak + 1;
+      newStreak = streak + 1;
       if (newStreak % STREAK_INTERVAL === 0) {
         streakBonus = STREAK_BONUS;
       }
@@ -163,9 +189,23 @@ function App() {
     }
 
     // Ensure score doesn't drop below 0 if we don't want to, but negative is fine for a simulator.
-    setScore(prev => Math.max(0, prev + xpChange));
+    const newScore = Math.max(0, score + xpChange);
+    setScore(newScore);
 
     playSound(hasGameOver ? 'gameover' : (isCorrect ? 'correct' : 'wrong'));
+
+    applyLifetimeUpdate((prev) => {
+      const next = { ...prev, categoryCorrect: { ...prev.categoryCorrect }, maxScore: Math.max(prev.maxScore, newScore) };
+      if (isCorrect && !hasGameOver) {
+        next.totalCorrect += 1;
+        next.bestStreakEver = Math.max(next.bestStreakEver, newStreak);
+        const category = currentScenario.category || 'Allgemein';
+        next.categoryCorrect[category] = (next.categoryCorrect[category] || 0) + 1;
+      } else {
+        next.totalWrong += 1;
+      }
+      return next;
+    });
 
     setLastAnswerState({
       isCorrect,
@@ -178,8 +218,22 @@ function App() {
     setGameState('result');
   };
 
+  const finishShift = (endedInGameOver) => {
+    const totalTasksAnswered = stats.correct + stats.wrong;
+    const isPerfectShift = !endedInGameOver && totalTasksAnswered >= MIN_TASKS_FOR_PERFECT_SHIFT && stats.wrong === 0;
+    const survivedHardcore = !endedInGameOver && settings.difficulty === 'hardcore';
+
+    applyLifetimeUpdate((prev) => ({
+      ...prev,
+      shiftsCompleted: prev.shiftsCompleted + 1,
+      perfectShifts: prev.perfectShifts + (isPerfectShift ? 1 : 0),
+      hardcoreShiftsSurvived: prev.hardcoreShiftsSurvived + (survivedHardcore ? 1 : 0),
+    }));
+  };
+
   const nextTask = () => {
     if (lastAnswerState.isGameOver) {
+      finishShift(true);
       setGameState('end');
       return;
     }
@@ -201,6 +255,7 @@ function App() {
       setGameState('task');
       playSound('alarm');
     } else {
+      finishShift(false);
       setGameState('end');
     }
   };
@@ -212,6 +267,14 @@ function App() {
 
   return (
     <div className="app-container">
+      {toastQueue.length > 0 && (
+        <div className="achievement-toast-stack">
+          {toastQueue.map((a) => (
+            <AchievementToast key={a.id} achievement={a} onDone={() => dismissToast(a.id)} />
+          ))}
+        </div>
+      )}
+
       <div className="terminal-header">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -238,7 +301,14 @@ function App() {
           onSettingsChange={updateSettings}
           categories={categories}
           onToggleCategory={toggleCategory}
+          unlockedCount={lifetimeStats.unlocked.length}
+          totalAchievements={ACHIEVEMENTS.length}
+          onShowAchievements={() => setGameState('achievements')}
         />
+      )}
+
+      {gameState === 'achievements' && (
+        <AchievementsScreen unlocked={lifetimeStats.unlocked} onBack={() => setGameState('start')} />
       )}
 
       {gameState === 'task' && taskOrder.length > 0 && (
@@ -268,6 +338,7 @@ function App() {
             isGameOver={lastAnswerState.isGameOver}
             streakBonus={lastAnswerState.streakBonus}
             correctAnswerTexts={lastAnswerState.correctAnswerTexts}
+            explanation={currentStep.explanation}
           />
         );
       })()}

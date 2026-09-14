@@ -4743,7 +4743,8 @@ const baseScenarios = [
       { text: "Die ConfigMap so lassen, Secrets sind ohnehin nur Base64-kodiert und damit nicht sicherer.", isCorrect: false },
       { text: "Den Namespace komplett löschen, um das Problem zu beseitigen.", isCorrect: false }
     ],
-    feedback: "Korrekt! ConfigMaps sind für Konfiguration, nicht für Geheimnisse gedacht. Da das Passwort bereits im Klartext einsehbar war, muss es als kompromittiert gelten und rotiert werden – reines Verschieben reicht nicht."
+    feedback: "Korrekt! ConfigMaps sind für Konfiguration, nicht für Geheimnisse gedacht. Da das Passwort bereits im Klartext einsehbar war, muss es als kompromittiert gelten und rotiert werden – reines Verschieben reicht nicht.",
+    explanation: "ConfigMaps in Kubernetes sind unverschlüsselt und für jeden mit Lesezugriff auf den Namespace einsehbar (auch über die API oder etcd). Secrets sind zwar oft nur Base64-kodiert und damit auch kein perfekter Schutz, aber sie werden von RBAC, Verschlüsselung-at-rest und Tools wie External-Secrets-Operator anders behandelt als ConfigMaps – der entscheidende Punkt ist aber: Ein bereits offengelegtes Passwort muss immer rotiert werden, unabhängig davon, wo es künftig gespeichert wird."
   },
   {
     id: 1036,
@@ -4755,7 +4756,8 @@ const baseScenarios = [
       { text: "Nur den Pod neu starten, das Problem sollte sich damit von selbst lösen.", isCorrect: false },
       { text: "Abwarten, ob noch weitere privilegierte Pods betroffen sind, bevor gehandelt wird.", isCorrect: false }
     ],
-    feedback: "Korrekt! Ein Container-Escape bedeutet, dass der Angreifer bereits Zugriff auf den Host hat. Der Node muss isoliert werden, bevor er sich lateral im Cluster ausbreiten kann."
+    feedback: "Korrekt! Ein Container-Escape bedeutet, dass der Angreifer bereits Zugriff auf den Host hat. Der Node muss isoliert werden, bevor er sich lateral im Cluster ausbreiten kann.",
+    explanation: "Ein 'privileged: true' Container teilt sich praktisch den Kernel-Zugriff mit dem Host und kann Capabilities wie CAP_SYS_ADMIN nutzen, um aus dem Container-Namespace auszubrechen. In der MITRE-ATT&CK-Systematik entspricht das der Technik 'Escape to Host' (T1611). Deshalb gilt: privilegierte Container nach Möglichkeit ganz vermeiden und im Ernstfall den betroffenen Node isolieren, nicht nur den Pod."
   },
   {
     id: 1037,
@@ -4769,7 +4771,8 @@ const baseScenarios = [
       { text: "Den Bucket unverändert lassen, da Löschen der Daten den Kunden noch mehr schaden würde.", isCorrect: false, penalty: 60 },
       { text: "Den kompletten AWS-Account inklusive aller anderen Buckets und Services deaktivieren, um jedes Risiko auszuschließen.", isCorrect: false, penalty: 100, isGameOver: true }
     ],
-    feedback: "Korrekt! Zugriff sofort einschränken UND den bereits erfolgten Abfluss untersuchen – beides ist nötig, um Ausmaß und Meldepflichten (z.B. DSGVO) korrekt einschätzen zu können."
+    feedback: "Korrekt! Zugriff sofort einschränken UND den bereits erfolgten Abfluss untersuchen – beides ist nötig, um Ausmaß und Meldepflichten (z.B. DSGVO) korrekt einschätzen zu können.",
+    explanation: "Ein öffentlicher S3-Bucket ist einer der häufigsten Cloud-Fehlkonfigurationen überhaupt und wurde für zahlreiche reale Datenlecks verantwortlich gemacht. Wichtig: Zugriff sperren behebt nur die Konfiguration, nicht den bereits erfolgten Abfluss – deshalb muss zusätzlich per Zugriffs-/CloudTrail-Logs geprüft werden, wer wann was heruntergeladen hat, um Meldepflichten korrekt einschätzen zu können."
   },
   {
     id: 1038,
@@ -4781,7 +4784,8 @@ const baseScenarios = [
       { text: "Das Paket einfach manuell aus der öffentlichen Registry herunterladen und lokal einbinden.", isCorrect: false },
       { text: "Den Build-Server einfach neu starten, der Fehler tritt sicher nicht wieder auf.", isCorrect: false }
     ],
-    feedback: "Korrekt! Dependency Confusion nutzt aus, dass Paketmanager oft die öffentliche Registry bevorzugen. Ein reservierter Namespace bzw. Scope und eine feste Registry-Zuordnung verhindern das dauerhaft."
+    feedback: "Korrekt! Dependency Confusion nutzt aus, dass Paketmanager oft die öffentliche Registry bevorzugen. Ein reservierter Namespace bzw. Scope und eine feste Registry-Zuordnung verhindern das dauerhaft.",
+    explanation: "Dependency Confusion nutzt aus, dass Paketmanager (npm, pip, etc.) standardmäßig oft die Version mit der höchsten Versionsnummer bevorzugen – unabhängig davon, aus welcher Registry sie stammt. Ein Angreifer, der den internen Paketnamen öffentlich mit einer hohen Versionsnummer registriert, kann so seinen eigenen Code in interne Build-Pipelines schleusen. Ein reservierter Scope (z.B. '@firma/paketname') und eine feste Registry-Zuordnung schließen die Lücke dauerhaft."
   },
   {
     id: 1039,
@@ -4793,7 +4797,8 @@ const baseScenarios = [
       { text: "Nichts unternehmen, da ja keines der einzelnen Konten gesperrt wurde.", isCorrect: false },
       { text: "Nur die Kontosperr-Schwelle weiter senken, damit sie beim nächsten Versuch garantiert greift.", isCorrect: false }
     ],
-    feedback: "Korrekt! Password Spraying umgeht bewusst klassische Kontosperrungen, indem pro Konto nur sehr selten ein Versuch stattfindet. Ein niedrigeres Sperr-Limit würde nur legitime Nutzer aussperren – MFA und Passwortwechsel sind der wirksame Schutz."
+    feedback: "Korrekt! Password Spraying umgeht bewusst klassische Kontosperrungen, indem pro Konto nur sehr selten ein Versuch stattfindet. Ein niedrigeres Sperr-Limit würde nur legitime Nutzer aussperren – MFA und Passwortwechsel sind der wirksame Schutz.",
+    explanation: "Password Spraying dreht die klassische Brute-Force-Logik um: Statt viele Passwörter gegen ein Konto zu testen (was Kontosperrungen auslöst), wird ein einziges, häufig genutztes Passwort gegen viele Konten getestet. Weil pro Konto nur selten ein Versuch stattfindet, bleiben klassische Schwellenwert-basierte Sperrmechanismen wirkungslos – Verhaltenserkennung (viele Konten, ein Passwort, kurzer Zeitraum) und MFA sind die wirksamen Gegenmaßnahmen."
   },
   {
     id: 1040,
@@ -4805,7 +4810,8 @@ const baseScenarios = [
       { text: "Die Überweisung sofort ausführen, schließlich klang die Stimme absolut identisch zum CEO.", isCorrect: false },
       { text: "Eine E-Mail an den CEO schreiben und in aller Ruhe auf Antwort warten, aber die Überweisung schon mal vorbereiten.", isCorrect: false }
     ],
-    feedback: "Korrekt! Dringlichkeit und Geheimhaltung sind die klassischen Warnsignale für CEO-Fraud. KI-Stimmklone machen 'Stimme klingt echt' wertlos – eine Verifikation über einen unabhängigen zweiten Kanal ist zwingend."
+    feedback: "Korrekt! Dringlichkeit und Geheimhaltung sind die klassischen Warnsignale für CEO-Fraud. KI-Stimmklone machen 'Stimme klingt echt' wertlos – eine Verifikation über einen unabhängigen zweiten Kanal ist zwingend.",
+    explanation: "CEO-Fraud (auch Business E-Mail Compromise genannt) basiert psychologisch auf Autorität, Dringlichkeit und Geheimhaltung. Moderne KI-Sprachsynthese kann aus wenigen Minuten öffentlich verfügbarem Audiomaterial (z.B. Konferenz-Mitschnitten) eine täuschend echte Stimme klonen. Deshalb darf 'die Stimme klang echt' nie allein als Verifikation gelten – eine Rückverifikation über einen zuvor bekannten, unabhängigen Kanal ist der einzig verlässliche Schutz."
   },
   {
     id: 1041,
@@ -4865,7 +4871,8 @@ const baseScenarios = [
       { text: "Dem Nutzer raten, sich einfach neu einzuloggen, das Problem löst sich dann von selbst.", isCorrect: false },
       { text: "Das komplette Web-Portal für alle Nutzer dauerhaft offline nehmen.", isCorrect: false }
     ],
-    feedback: "Korrekt! In ungesicherten öffentlichen WLANs können Session-Cookies abgefangen werden. Ein einfaches Neu-Einloggen reicht nicht, da die gestohlene Sitzung sonst weiter gültig bleibt – sie muss aktiv widerrufen werden."
+    feedback: "Korrekt! In ungesicherten öffentlichen WLANs können Session-Cookies abgefangen werden. Ein einfaches Neu-Einloggen reicht nicht, da die gestohlene Sitzung sonst weiter gültig bleibt – sie muss aktiv widerrufen werden.",
+    explanation: "Session Hijacking zielt nicht auf das Passwort, sondern auf das Session-Cookie oder Token, das nach dem Login im Browser gespeichert ist. In einem offenen WLAN kann unverschlüsselter oder schlecht abgesicherter Datenverkehr abgefangen werden. Da das gestohlene Cookie unabhängig vom eigentlichen Login weiter gültig bleibt, hilft ein erneutes Einloggen nicht – die Sitzung muss serverseitig aktiv widerrufen werden."
   },
   {
     id: 1046,
@@ -4877,7 +4884,8 @@ const baseScenarios = [
       { text: "Da es viele verschiedene IPs sind, kann man ohnehin nichts dagegen tun.", isCorrect: false },
       { text: "Nur eine einzelne auffällige IP-Adresse blockieren und den Rest ignorieren.", isCorrect: false }
     ],
-    feedback: "Korrekt! Credential Stuffing nutzt wiederverwendete Passwörter aus fremden Leaks. Einzelne IPs zu sperren bringt nichts – Rate-Limiting, Bot-Erkennung und MFA sind die wirksamen Gegenmaßnahmen."
+    feedback: "Korrekt! Credential Stuffing nutzt wiederverwendete Passwörter aus fremden Leaks. Einzelne IPs zu sperren bringt nichts – Rate-Limiting, Bot-Erkennung und MFA sind die wirksamen Gegenmaßnahmen.",
+    explanation: "Credential Stuffing funktioniert, weil viele Menschen Passwörter über mehrere Dienste hinweg wiederverwenden. Ein Datenleck bei Anbieter A liefert Angreifern damit potenziell gültige Zugangsdaten für Anbieter B. Da die Anmeldeversuche über viele verschiedene, oft per Botnetz verteilte IP-Adressen laufen, greifen klassische IP-basierte Sperren kaum – Bot-Erkennung, Rate-Limiting pro Konto und vor allem MFA sind hier die wirksamen Kontrollen."
   },
   {
     id: 1047,
@@ -4889,7 +4897,8 @@ const baseScenarios = [
       { text: "Nur die betroffenen Nutzer bitten, ihre Passwörter zu ändern.", isCorrect: false },
       { text: "Die App-Berechtigung ignorieren, es war ja nur 'Lesezugriff'.", isCorrect: false }
     ],
-    feedback: "Korrekt! Ein Passwortwechsel hilft hier nicht, da OAuth-Tokens unabhängig vom Passwort weiter gültig bleiben. Der Zugriff (Consent Grant) muss zentral entzogen werden – auch 'nur Lesezugriff' kann massiven Datenabfluss bedeuten."
+    feedback: "Korrekt! Ein Passwortwechsel hilft hier nicht, da OAuth-Tokens unabhängig vom Passwort weiter gültig bleiben. Der Zugriff (Consent Grant) muss zentral entzogen werden – auch 'nur Lesezugriff' kann massiven Datenabfluss bedeuten.",
+    explanation: "OAuth-Consent-Phishing (auch 'Illicit Consent Grant' genannt) umgeht Passwortschutz und sogar MFA komplett, weil der Nutzer dem Angreifer aktiv und legitim über den offiziellen OAuth-Flow Zugriff erteilt. Das ausgestellte Access-/Refresh-Token bleibt unabhängig vom Passwort gültig, bis es explizit widerrufen wird. Deshalb ist regelmäßiges Prüfen und Aufräumen erteilter App-Berechtigungen (z.B. in Microsoft Entra ID oder Google Workspace) ein wichtiger, oft übersehener Sicherheitsbaustein."
   },
   {
     id: 1048,
@@ -4901,7 +4910,8 @@ const baseScenarios = [
       { text: "DNS-Anfragen ignorieren, DNS ist schließlich nur für Namensauflösung und ungefährlich.", isCorrect: false },
       { text: "Den kompletten DNS-Server für alle Mitarbeiter abschalten.", isCorrect: false }
     ],
-    feedback: "Korrekt! DNS wird oft nicht so streng überwacht wie andere Protokolle, weshalb Angreifer Daten in DNS-Anfragen verstecken. Host isolieren und Ziel blockieren, statt DNS pauschal abzuschalten."
+    feedback: "Korrekt! DNS wird oft nicht so streng überwacht wie andere Protokolle, weshalb Angreifer Daten in DNS-Anfragen verstecken. Host isolieren und Ziel blockieren, statt DNS pauschal abzuschalten.",
+    explanation: "DNS wird von vielen Firewalls und Sicherheitsprodukten traditionell als 'harmloses' Steuerungsprotokoll behandelt und daher oft nicht so streng inspiziert wie HTTP(S) oder E-Mail-Verkehr. Diese blinde Stelle nutzt DNS-Tunneling aus, indem Daten in Subdomain-Labels codiert und als scheinbar normale DNS-Anfragen exfiltriert werden. Auffällig sind vor allem sehr lange, zufällig aussehende Labels und eine hohe Anfragefrequenz an eine einzelne externe Domain."
   },
   {
     id: 1049,
@@ -4913,7 +4923,8 @@ const baseScenarios = [
       { text: "Alle Clients einfach neu starten, das behebt ARP-Probleme dauerhaft.", isCorrect: false },
       { text: "Die Verbindungsabbrüche als normales WLAN-Rauschen abtun.", isCorrect: false }
     ],
-    feedback: "Korrekt! Wiederholte Gateway-MAC-Änderungen sind ein starkes Indiz für einen aktiven MITM-Angriff im LAN. Das Gerät muss lokalisiert und isoliert werden, und Schutzmechanismen wie Dynamic ARP Inspection verhindern eine Wiederholung."
+    feedback: "Korrekt! Wiederholte Gateway-MAC-Änderungen sind ein starkes Indiz für einen aktiven MITM-Angriff im LAN. Das Gerät muss lokalisiert und isoliert werden, und Schutzmechanismen wie Dynamic ARP Inspection verhindern eine Wiederholung.",
+    explanation: "ARP ist ein Protokoll ohne Authentifizierung: Jedes Gerät im selben Subnetz kann behaupten, eine bestimmte IP-Adresse (z.B. das Gateway) zu besitzen. Beim ARP-Spoofing sendet ein Angreifer gefälschte ARP-Antworten, damit der Datenverkehr über sein Gerät läuft (Man-in-the-Middle). Dynamic ARP Inspection und statische ARP-Einträge für kritische Systeme verhindern, dass gefälschte Zuordnungen akzeptiert werden."
   },
   {
     id: 1050,
@@ -4925,7 +4936,8 @@ const baseScenarios = [
       { text: "Das Gäste-WLAN einfach dauerhaft für alle Besucher abschalten.", isCorrect: false },
       { text: "Den Vorfall ignorieren, VLANs sind ohnehin vollständig voneinander isoliert.", isCorrect: false }
     ],
-    feedback: "Korrekt! VLANs sind kein absoluter Schutz – ein falsch konfiguriertes natives VLAN ermöglicht Double-Tagging-Angriffe. Saubere Trunk-Konfiguration verhindert das VLAN-Hopping, statt das Gäste-WLAN komplett zu opfern."
+    feedback: "Korrekt! VLANs sind kein absoluter Schutz – ein falsch konfiguriertes natives VLAN ermöglicht Double-Tagging-Angriffe. Saubere Trunk-Konfiguration verhindert das VLAN-Hopping, statt das Gäste-WLAN komplett zu opfern.",
+    explanation: "VLAN-Hopping per Double-Tagging funktioniert, weil ein Switch beim sogenannten 'nativen VLAN' auf einem Trunk-Port das äußere 802.1Q-Tag entfernt, ohne das innere zu prüfen – das Paket landet dadurch im inneren, eigentlich nicht zugänglichen VLAN. Eine saubere Trunk-Konfiguration (natives VLAN nicht produktiv nutzen, explizites Tagging erzwingen) verhindert diesen Trick zuverlässig, ganz ohne das Gäste-Netz abschalten zu müssen."
   },
   {
     id: 1051,
@@ -4949,7 +4961,8 @@ const baseScenarios = [
       { text: "Die Anfrage ignorieren, da die WAF sie ja bereits protokolliert und offenbar geblockt hat.", isCorrect: false },
       { text: "Nur den User-Agent-Header künftig aus allen Logs herausfiltern.", isCorrect: false }
     ],
-    feedback: "Korrekt! Ein geloggter Exploit-Versuch beweist nicht automatisch, dass er erfolglos war. Betroffene Systeme müssen identifiziert, gepatcht und auf bereits erfolgte Kompromittierung untersucht werden."
+    feedback: "Korrekt! Ein geloggter Exploit-Versuch beweist nicht automatisch, dass er erfolglos war. Betroffene Systeme müssen identifiziert, gepatcht und auf bereits erfolgte Kompromittierung untersucht werden.",
+    explanation: "Die Log4Shell-Schwachstelle (CVE-2021-44228) entstand dadurch, dass die weitverbreitete Java-Logging-Bibliothek Log4j Zeichenketten wie '${jndi:ldap://...}' aktiv auflöste und dabei beliebigen Code von einem externen Server nachladen konnte – allein durch das Loggen eines vom Angreifer kontrollierten Strings. Solche Muster tauchen seither in vielen Formen und leicht abgewandelten Payloads wieder auf, weshalb betroffene Bibliotheken zügig gepatcht und Logs auf bereits erfolgte Ausnutzung untersucht werden müssen."
   },
   {
     id: 1053,
@@ -4973,7 +4986,8 @@ const baseScenarios = [
       { text: "Abwarten, ob der Vorfall überhaupt jemandem auffällt, bevor man etwas unternimmt.", isCorrect: false },
       { text: "Nur intern dokumentieren, eine Meldepflicht besteht bei Kundendaten ohnehin nicht.", isCorrect: false }
     ],
-    feedback: "Korrekt! Bei einem bestätigten Datenschutzvorfall mit personenbezogenen Daten gilt nach DSGVO eine 72-Stunden-Meldefrist an die Aufsichtsbehörde. Die Uhr läuft bereits, deshalb müssen Recht/DSB sofort eingebunden werden."
+    feedback: "Korrekt! Bei einem bestätigten Datenschutzvorfall mit personenbezogenen Daten gilt nach DSGVO eine 72-Stunden-Meldefrist an die Aufsichtsbehörde. Die Uhr läuft bereits, deshalb müssen Recht/DSB sofort eingebunden werden.",
+    explanation: "Die DSGVO (Art. 33) verlangt, dass eine meldepflichtige Verletzung des Schutzes personenbezogener Daten der zuständigen Aufsichtsbehörde binnen 72 Stunden nach Bekanntwerden gemeldet wird – nicht erst nach vollständiger Aufklärung des Vorfalls. Bei einem hohen Risiko für Betroffene (z.B. bei Zahlungsdaten) müssen zusätzlich nach Art. 34 auch die betroffenen Personen direkt informiert werden. Rechtsabteilung und Datenschutzbeauftragter müssen daher von Anfang an eng eingebunden sein."
   },
   {
     id: 1055,
@@ -5033,7 +5047,8 @@ const baseScenarios = [
       { text: "Den Chatbot ignorieren, ein Sprachmodell kann schließlich nicht 'gehackt' werden.", isCorrect: false },
       { text: "Nur das eine betroffene Support-Ticket löschen und sonst nichts ändern.", isCorrect: false }
     ],
-    feedback: "Korrekt! Prompt Injection ist eine reale Angriffsklasse gegen KI-Systeme: Nutzerinhalte müssen strikt von Systemanweisungen getrennt und Aktionen des Modells eingeschränkt werden, statt das Problem als Einzelfall abzutun."
+    feedback: "Korrekt! Prompt Injection ist eine reale Angriffsklasse gegen KI-Systeme: Nutzerinhalte müssen strikt von Systemanweisungen getrennt und Aktionen des Modells eingeschränkt werden, statt das Problem als Einzelfall abzutun.",
+    explanation: "Prompt Injection ist eine der zentralen neuen Angriffsklassen im OWASP-Top-10-für-LLM-Anwendungen-Katalog: Weil ein Sprachmodell Systemanweisungen und Nutzerinhalte oft nur als einen einzigen Text-Strom verarbeitet, kann bösartiger Text in scheinbar harmlosen Eingaben (z.B. einem Support-Ticket oder einem Dokument) die eigentlichen Anweisungen überschreiben. Wirksamer Schutz kombiniert strikte Trennung von Anweisung und Inhalt, minimale Rechte für das Modell und menschliche Freigabe für sensible Aktionen."
   },
   {
     id: 1060,
@@ -5045,7 +5060,8 @@ const baseScenarios = [
       { text: "Die IDs in der URL einfach durch noch längere, zufällige Zeichenketten ersetzen.", isCorrect: false },
       { text: "Das Problem ignorieren, da ein Angreifer die IDs ohnehin nur zufällig erraten könnte.", isCorrect: false }
     ],
-    feedback: "Korrekt! Das ist ein klassischer BOLA/IDOR-Fehler (OWASP API Security Top 10). 'Security by obscurity' durch längere IDs reicht nicht – jede Anfrage muss serverseitig autorisiert werden."
+    feedback: "Korrekt! Das ist ein klassischer BOLA/IDOR-Fehler (OWASP API Security Top 10). 'Security by obscurity' durch längere IDs reicht nicht – jede Anfrage muss serverseitig autorisiert werden.",
+    explanation: "BOLA/IDOR (Broken Object Level Authorization / Insecure Direct Object Reference) steht seit Jahren ganz oben in den OWASP API Security Top 10. Der Fehler entsteht, wenn eine Anwendung zwar prüft, ob ein Nutzer eingeloggt ist, aber nicht, ob er auch berechtigt ist, genau dieses Objekt (z.B. diese Rechnung) abzurufen. Da IDs oft vorhersehbar oder leicht zu erraten sind, muss jede einzelne Anfrage serverseitig gegen die tatsächliche Berechtigung des Nutzers geprüft werden."
   },
   {
     id: 1061,
@@ -5093,7 +5109,8 @@ const baseScenarios = [
       { text: "Die Rolle unverändert lassen, da sie bisher noch nicht missbraucht wurde.", isCorrect: false },
       { text: "Der Anwendung stattdessen eine zweite, ebenfalls administrative Rolle als Backup geben.", isCorrect: false }
     ],
-    feedback: "Korrekt! Übermäßige Berechtigungen sind ein enormes Risiko, falls die Anwendung jemals kompromittiert wird. Least Privilege bedeutet, Rechte auf das tatsächlich Notwendige zu reduzieren, nicht abzuwarten, bis etwas passiert."
+    feedback: "Korrekt! Übermäßige Berechtigungen sind ein enormes Risiko, falls die Anwendung jemals kompromittiert wird. Least Privilege bedeutet, Rechte auf das tatsächlich Notwendige zu reduzieren, nicht abzuwarten, bis etwas passiert.",
+    explanation: "Das Prinzip der geringsten Rechte (Least Privilege) ist eine der wichtigsten Grundregeln der Cloud-Sicherheit: Jede Identität – ob Mensch oder Anwendung – sollte nur genau die Berechtigungen besitzen, die für ihre Aufgabe nötig sind. Eine Anwendung mit 'AdministratorAccess', die nur eine Datenbank lesen muss, vergrößert die Angriffsfläche massiv: Wird sie kompromittiert (z.B. über eine Schwachstelle im Code), erbt der Angreifer sofort vollen Kontozugriff statt nur Lesezugriff auf eine Tabelle."
   },
   {
     id: 1065,
@@ -5161,7 +5178,8 @@ const baseScenarios = [
       { text: "Den Alarm ignorieren, da klassische Virenscanner keine Datei auf der Festplatte gefunden haben.", isCorrect: false },
       { text: "Nur den PowerShell-Prozess beenden, ohne die Maschine weiter zu untersuchen.", isCorrect: false }
     ],
-    feedback: "Korrekt! Fileless Malware umgeht klassische signaturbasierte Virenscanner gerade dadurch, dass nichts auf die Platte geschrieben wird. EDR-Verhaltensanalyse ist hier entscheidend, und die Maschine muss vollständig untersucht werden."
+    feedback: "Korrekt! Fileless Malware umgeht klassische signaturbasierte Virenscanner gerade dadurch, dass nichts auf die Platte geschrieben wird. EDR-Verhaltensanalyse ist hier entscheidend, und die Maschine muss vollständig untersucht werden.",
+    explanation: "Fileless Malware nistet sich direkt im Arbeitsspeicher ein (z.B. über PowerShell, WMI oder .NET-Reflection) und schreibt bewusst keine Datei auf die Festplatte, um signaturbasierte Virenscanner zu umgehen, die Dateien beim Zugriff scannen. Erkennbar wird sie meist nur über Verhaltensanalyse (EDR), etwa ungewöhnliche Eltern-Kind-Prozessketten oder stark verschleierte ('encoded') PowerShell-Befehle – ein Neustart der Maschine entfernt zwar oft die Malware aus dem RAM, aber nicht die Ursache, über die sie erneut eindringen kann."
   },
   {
     id: 1068,
@@ -5185,7 +5203,8 @@ const baseScenarios = [
       { text: "Nur das offizielle Firmen-WLAN-Passwort ändern und den Rogue Access Point unangetastet lassen.", isCorrect: false },
       { text: "Das komplette Firmen-WLAN dauerhaft abschalten.", isCorrect: false }
     ],
-    feedback: "Korrekt! Ein Rogue Access Point mit ähnlichem Namen ('Evil Twin') kann Zugangsdaten und Datenverkehr abfangen. Er muss physisch lokalisiert und entfernt werden – ein reiner Passwortwechsel im echten WLAN löst das Problem nicht."
+    feedback: "Korrekt! Ein Rogue Access Point mit ähnlichem Namen ('Evil Twin') kann Zugangsdaten und Datenverkehr abfangen. Er muss physisch lokalisiert und entfernt werden – ein reiner Passwortwechsel im echten WLAN löst das Problem nicht.",
+    explanation: "Ein 'Evil Twin' Access Point gibt sich als legitimer Netzwerkname (SSID) aus, oft sogar mit stärkerem Signal als das echte Netzwerk, damit sich Geräte automatisch mit ihm verbinden. Der Angreifer kann dann den gesamten Datenverkehr mitlesen oder manipulieren (Man-in-the-Middle), inklusive Zugangsdaten für interne Portale. WPA2/3-Enterprise mit zertifikatsbasierter Authentifizierung statt eines gemeinsamen Passworts erschwert das Nachbauen eines überzeugenden Fake-APs erheblich."
   }
 ];
 

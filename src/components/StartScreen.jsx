@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function StartScreen({ onStart, score, onReset, settings, onSettingsChange, categories, onToggleCategory }) {
+export default function StartScreen({ onStart, score, onReset, settings, onSettingsChange, categories, onToggleCategory, unlockedCount, totalAchievements, onShowAchievements }) {
   const [showSettings, setShowSettings] = useState(false);
   const isHardcore = settings.difficulty === 'hardcore';
   const timerActive = isHardcore || settings.timerEnabled;
@@ -24,6 +24,10 @@ export default function StartScreen({ onStart, score, onReset, settings, onSetti
 
       <button className="btn-link settings-toggle" onClick={() => setShowSettings(s => !s)}>
         ⚙ Einstellungen {showSettings ? '▲' : '▼'}
+      </button>
+
+      <button className="btn-link" onClick={onShowAchievements}>
+        🏆 Erfolge ({unlockedCount} / {totalAchievements})
       </button>
 
       {showSettings && (

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function ResultScreen({ isCorrect, feedback, onNext, isNextStep, xpChange, isGameOver, streakBonus, correctAnswerTexts }) {
+export default function ResultScreen({ isCorrect, feedback, onNext, isNextStep, xpChange, isGameOver, streakBonus, correctAnswerTexts, explanation }) {
   const isCriticalError = isGameOver || isCorrect === false;
+  const [showExplanation, setShowExplanation] = useState(false);
 
   return (
     <div className="screen">
@@ -19,6 +20,15 @@ export default function ResultScreen({ isCorrect, feedback, onNext, isNextStep, 
                 <li key={i}>{text}</li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {explanation && (
+          <div className="explanation-block">
+            <button type="button" className="btn-link explain-toggle" onClick={() => setShowExplanation(s => !s)}>
+              {showExplanation ? 'Weniger anzeigen ▲' : 'Warum? Mehr erfahren ▼'}
+            </button>
+            {showExplanation && <div className="explanation-box">{explanation}</div>}
           </div>
         )}
 
