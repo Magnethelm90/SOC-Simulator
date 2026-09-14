@@ -4915,7 +4915,6 @@ const baseScenarios = [
       },
     ]
   },
-,
   {
   id: 1000,
   title: "RODC (Read-Only Domain Controller) Setup",
